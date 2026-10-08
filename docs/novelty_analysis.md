@@ -1,0 +1,16 @@
+# Contribution analysis, scoped to the reference paper
+
+The supplied paper (Xie, Sheng, Chen, IEEE TAES 2024, DOI 10.1109/TAES.2024.3355381) already develops dynamic event-triggered **fault-tolerant** attitude control, a constant epsilon term for reduced communication, self-trigger prediction, and conditional convergence/Zeno results. None of these is new here. The audit examined the paper's stated contributions, equations and numerical section before implementation.
+
+| Baseline contribution | Limitation in supplied numerical testbed | Extension implemented here | Why it matters | Experimental evaluation |
+|---|---|---|---|---|
+| Robust fault-tolerant controller under effectiveness loss | Prescribed constant Gamma; no estimated severity used by the schedule | Windowed model-residual effectiveness estimator + bounded compensation | Connects measured degradation to a visible response | Analytical excited-axis test, mission telemetry, ablation C/F; comprehensive diagnosis validation remains open |
+| Dynamic chi + epsilon triggering already reduces communication | Numerical trigger coefficients fixed; no fault-severity/remaining-budget term | Explicit bounded scaling with error, estimated severity, residual torque, rate and budget pressure | Exposes accuracy/communication trade-offs under changing conditions | A–D ablation, E1–E9, Pareto views |
+| Self-trigger predicts next update under model assumptions | No online diagnosis-dependent horizon in the supplied method | Fault-aware rescaling of predicted interval | Makes schedule react at update instants to diagnosed stress | Six-policy deterministic comparison; no new stability theorem |
+| Control gains chosen from theorem | No parameter search against mission costs in baseline | NSGA-II exploratory search, fixed normalization, failure penalties | Makes candidate selection reproducible and multiobjective | E/F ablation, separate training and Monte Carlo seeds |
+| Fixed illustrative numerical scenarios | No paired random campaign or replayable failure archive | Scenario engine, 500-run matched campaign, censoring-aware metrics | Quantifies failure conditions and variation | E1–E10, saved configurations and distributions |
+| Original JavaScript educational visualization | Separate solver, static paper counts, no diagnosis evidence | Shared worker/Node engine, decision telemetry, exports and comparison UI | Makes visuals traceable to numerical evidence | Browser tests and JSON-to-plot pipeline |
+
+These are **implemented extensions relative to this repository and paper**, not established literature-first algorithmic novelty. A systematic related-work review beyond the supplied reference has not been performed. Baseline paper assumptions and proofs do not transfer to the modified law. Measured outcomes support an empirical research-platform contribution, not a universal resilience advantage. Time-driven control remains better on several tracking measures, and some ablations show negligible or negative benefit.
+
+Next publication work: isolate each adaptation channel, calibrate diagnosis/false-alarm performance, derive sufficient stability conditions with saturation/dropout/budget constraints, validate across independent solvers and hardware, and compare against additional published fault-aware scheduling methods.

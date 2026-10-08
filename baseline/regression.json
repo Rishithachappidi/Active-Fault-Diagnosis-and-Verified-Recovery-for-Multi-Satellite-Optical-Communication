@@ -1,0 +1,167 @@
+[
+  {
+    "mode": "baseline-time",
+    "metrics": {
+      "attitudeRMSE": 0.11454211849869855,
+      "angularVelocityRMSE": 0.05484630887795179,
+      "maxAttitudeError": 0.3711513061952225,
+      "convergenceTime": 29.823,
+      "success": true,
+      "finalAttitudeError": 0.0009984097035349029,
+      "finalAngularVelocityError": 0.0007275637633094776,
+      "controllerUpdates": 2400,
+      "communicationEvents": 2400,
+      "delivered": 2400,
+      "dropped": 0,
+      "budgetDenied": 0,
+      "communicationSaved": 0,
+      "controlEffort": 3.2869950978204012,
+      "saturationPercent": 9.527777777776418,
+      "peakTorque": 0.2,
+      "peakCommand": 8.529344833432443,
+      "faultRecoveryTime": null,
+      "triggerEvaluations": 0,
+      "computationUnits": 31680000,
+      "failed": false,
+      "elapsed": 60
+    },
+    "final": [
+      [
+        0.002835774170817235,
+        0.007718413828569751,
+        -0.0008617944533966938
+      ],
+      [
+        0.0030509375447788593,
+        0.007843876742806023,
+        -0.0007250416673339984
+      ],
+      [
+        0.003318009957933734,
+        0.007883083389026206,
+        -0.0007167128568748774
+      ],
+      [
+        0.0028470461536225897,
+        0.007560147442844464,
+        -0.0005498316582358367
+      ]
+    ],
+    "updates": [
+      600,
+      600,
+      600,
+      600
+    ]
+  },
+  {
+    "mode": "baseline-event",
+    "metrics": {
+      "attitudeRMSE": 0.1260422855562886,
+      "angularVelocityRMSE": 0.05629028257498196,
+      "maxAttitudeError": 0.3713037443485054,
+      "convergenceTime": 41.62,
+      "success": true,
+      "finalAttitudeError": 0.0010542143352822006,
+      "finalAngularVelocityError": 0.008399678846347373,
+      "controllerUpdates": 458,
+      "communicationEvents": 458,
+      "delivered": 458,
+      "dropped": 0,
+      "budgetDenied": 0,
+      "communicationSaved": 80.91666666666667,
+      "controlEffort": 7.343424055320153,
+      "saturationPercent": 15.330000000003905,
+      "peakTorque": 0.2,
+      "peakCommand": 9.424822425008223,
+      "faultRecoveryTime": null,
+      "triggerEvaluations": 240000,
+      "computationUnits": 72549600,
+      "failed": false,
+      "elapsed": 60
+    },
+    "final": [
+      [
+        0.0023961752396352703,
+        0.008471067526373294,
+        -0.0013358271080907097
+      ],
+      [
+        0.0025473015943014866,
+        0.008562285804029315,
+        -0.0008456341353854417
+      ],
+      [
+        0.002909080249354609,
+        0.008058836368767497,
+        -0.0006570616523890701
+      ],
+      [
+        0.002137657911750232,
+        0.0076247685503217375,
+        -0.0010001392083977155
+      ]
+    ],
+    "updates": [
+      111,
+      127,
+      122,
+      98
+    ]
+  },
+  {
+    "mode": "baseline-self",
+    "metrics": {
+      "attitudeRMSE": 0.11463271756802902,
+      "angularVelocityRMSE": 0.054781084993917095,
+      "maxAttitudeError": 0.37113181098276016,
+      "convergenceTime": 30.250000000000004,
+      "success": true,
+      "finalAttitudeError": 0.0011223513076266912,
+      "finalAngularVelocityError": 0.0017472966336338001,
+      "controllerUpdates": 3202,
+      "communicationEvents": 3202,
+      "delivered": 3202,
+      "dropped": 0,
+      "budgetDenied": 0,
+      "communicationSaved": -33.41666666666667,
+      "controlEffort": 3.29182078207202,
+      "saturationPercent": 9.45249999999872,
+      "peakTorque": 0.2,
+      "peakCommand": 8.518338312451219,
+      "faultRecoveryTime": null,
+      "triggerEvaluations": 0,
+      "computationUnits": 32642400,
+      "failed": false,
+      "elapsed": 60
+    },
+    "final": [
+      [
+        0.0028184153476332866,
+        0.007355632271936866,
+        -0.0005451208588330986
+      ],
+      [
+        0.0028773316830044897,
+        0.007056179015402754,
+        -0.0003986022569477252
+      ],
+      [
+        0.0031887298263861747,
+        0.007242217398859611,
+        -0.00025426937358960587
+      ],
+      [
+        0.0027354329281656237,
+        0.006846475882934509,
+        -0.00033023499055131713
+      ]
+    ],
+    "updates": [
+      598,
+      609,
+      620,
+      1375
+    ]
+  }
+]

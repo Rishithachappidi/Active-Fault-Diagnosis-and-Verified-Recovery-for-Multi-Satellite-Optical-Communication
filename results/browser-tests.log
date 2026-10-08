@@ -1,0 +1,26 @@
+fault inspector Attitude error / MRP
+5.19e-3
+Angular velocity error / rad/s
+1.44e-3
+Coordination ‖s‖
+2.43e-3
+Peak saturated torque / Nm
+0.155
+Estimated severity
+0.672
+Evidence score¹
+96%
+Estimated affected axis
+Y
+Last / next update / s
+34.91 / —
+Predicted interval / s
+—
+Formation recovery / s
+12.03
+Mission criterion
+IN PROGRESS
+MC table 1
+mobile overflow false
+comparison rows 6
+errors []
