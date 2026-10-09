@@ -1,4 +1,4 @@
-# Autonomous Spacecraft Formation Control and Resilience Digital Twin
+### Autonomous Spacecraft Formation Control and Resilience Digital Twin
 
 **Fault-Aware Adaptive Control, Communication Optimization, and Autonomous Mission Simulation**
 
