@@ -18,7 +18,7 @@ Its original MATLAB/Simulink files, fourteen figures and documentation remain in
 
 The extension addresses diagnosed severity, explicit fault missions, communication budgets, parameter search, paired robustness testing and traceable telemetry. These are additions relative to the supplied testbed. Literature-wide originality is **not established**. [Novelty analysis](docs/novelty_analysis.md).
 
-## Architecture
+### Architecture
 
 ```mermaid
 flowchart LR
@@ -40,7 +40,7 @@ flowchart LR
 
 One ECMAScript engine serves the browser worker and Node experiments. The new native MATLAB extension is isolated under `simulation/extensions/`. It includes a separate model builder and an independent baseline validation harness. **MATLAB/Simulink execution has not been verified in this environment.** [Full audit and data flow](docs/ARCHITECTURE.md).
 
-## Mathematical model
+### Mathematical model
 
 ```
 sigma_dot = [(1 - sigma' sigma) I/4 + skew(sigma)/2 + sigma sigma'/2] omega
@@ -51,7 +51,7 @@ u_i = -k1_i s_sample - k2_i alpha Phi_i sign(s_sample)
 
 Four rigid bodies, 24 states, diagonal inertia and a directed communication topology. Body torques clip at ±0.2 Nm. The scene's positions are schematic; orientation and angular velocity come from the simulation. No orbital/translational dynamics are implied. [Model and metric definitions](docs/mathematical_model.md).
 
-## Fault model and diagnosis
+### Fault model and diagnosis
 
 Healthy, partial/severe degradation, complete single-axis failure, multiple-axis losses, sudden/gradual/intermittent profiles, packet loss, increased disturbance and noisy sensors are configurable. A four-second sliding-window torque regression estimates axis effectiveness using measured angular acceleration and commanded torque. It does not read injected fault truth. A transparent excitation gate and uncertainty-derived **evidence score** replace fictional AI confidence. [Fault model](docs/fault_model.md).
 
