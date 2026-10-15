@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: satellite-optical-recovery
+    runtime: static
+    buildCommand: echo "static site, no build step"
+    staticPublishPath: ./optical-recovery
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=600

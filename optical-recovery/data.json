@@ -1,0 +1,794 @@
+{
+ "batch": "comparison_20261016_000055_091",
+ "reference_batch": "comparison_20261014_224749_328",
+ "trials": 320,
+ "origins": {
+  "preserved_v1": 64,
+  "new_simulink": 256
+ },
+ "seeds": [
+  101,
+  202,
+  303,
+  404,
+  505
+ ],
+ "scenarios": [
+  "normal",
+  "pointing",
+  "effectiveness",
+  "lag",
+  "power",
+  "blockage",
+  "sensor",
+  "simultaneous"
+ ],
+ "sizes": [
+  4,
+  6,
+  8,
+  10
+ ],
+ "overall_n4": {
+  "detection_accuracy": {
+   "v1": {
+    "mean": 0.7205555555555557,
+    "sd": 0.0
+   },
+   "v2": {
+    "mean": 0.9653333333333333,
+    "sd": 0.0012171612389004227
+   }
+  },
+  "precision": {
+   "v1": {
+    "mean": 0.7988320802005014,
+    "sd": 0.0
+   },
+   "v2": {
+    "mean": 0.9822888595080169,
+    "sd": 0.0009349947858335902
+   }
+  },
+  "recall": {
+   "v1": {
+    "mean": 0.7119047619047622,
+    "sd": 0.0
+   },
+   "v2": {
+    "mean": 0.9576190476190478,
+    "sd": 0.002129588549999792
+   }
+  },
+  "false_positive_rate": {
+   "v1": {
+    "mean": 0.33416666666666683,
+    "sd": 0.0
+   },
+   "v2": {
+    "mean": 0.029833333333333333,
+    "sd": 0.0014907119849998554
+   }
+  },
+  "isolation_accuracy": {
+   "v1": {
+    "mean": 0.09476190476190471,
+    "sd": 0.0
+   },
+   "v2": {
+    "mean": 0.715238095238095,
+    "sd": 0.002129588549999792
+   }
+  },
+  "uncertain_frequency": {
+   "v1": {
+    "mean": 0.4436111111111113,
+    "sd": 0.0
+   },
+   "v2": {
+    "mean": 0.14166666666666689,
+    "sd": 0.0
+   }
+  },
+  "recovery_success": {
+   "v1": {
+    "mean": 0.4,
+    "sd": 0.0
+   },
+   "v2": {
+    "mean": 0.25,
+    "sd": 0.0
+   }
+  },
+  "link_outage_s": {
+   "v1": {
+    "mean": 3.582,
+    "sd": 0.004808846015417733
+   },
+   "v2": {
+    "mean": 2.725,
+    "sd": 0.0024999999999999467
+   }
+  },
+  "postclear_outage_s": {
+   "v1": {
+    "mean": 0.599,
+    "sd": 0.004183300132670378
+   },
+   "v2": {
+    "mean": 0.1525,
+    "sd": 0.0025000000000000022
+   }
+  },
+  "postclear_false_alarm_rate": {
+   "v1": {
+    "mean": 0.50125,
+    "sd": 0.0
+   },
+   "v2": {
+    "mean": 0.04475,
+    "sd": 0.0022360679774997916
+   }
+  },
+  "link_availability": {
+   "v1": {
+    "mean": 0.9204000000000001,
+    "sd": 0.00010686324478707915
+   },
+   "v2": {
+    "mean": 0.9394444444444445,
+    "sd": 5.555555555553093e-05
+   }
+  },
+  "diagnosis_time_s": {
+   "v1": {
+    "mean": 0.02,
+    "sd": 0.0
+   },
+   "v2": {
+    "mean": 0.24857142857142858,
+    "sd": 0.0
+   }
+  }
+ },
+ "scenario_n4": {
+  "normal": {
+   "v1": {
+    "detection_accuracy": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": null,
+     "sd": null
+    },
+    "false_positive_rate": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 1.0,
+     "sd": 0.0
+    }
+   },
+   "v2": {
+    "detection_accuracy": {
+     "mean": 1.0,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": null,
+     "sd": null
+    },
+    "false_positive_rate": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 1.0,
+     "sd": 0.0
+    }
+   }
+  },
+  "pointing": {
+   "v1": {
+    "detection_accuracy": {
+     "mean": 0.775555555555556,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.666666666666667,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.886666666666667,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 5.183999999999999,
+     "sd": 0.008944271909999366
+    },
+    "postclear_outage_s": {
+     "mean": 2.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 0.8847999999999999,
+     "sd": 0.00019876159800019113
+    }
+   },
+   "v2": {
+    "detection_accuracy": {
+     "mean": 0.984444444444444,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.763333333333333,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.04,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.155555555555556,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 3.8,
+     "sd": 0.020000000000000018
+    },
+    "postclear_outage_s": {
+     "mean": 1.22,
+     "sd": 0.020000000000000018
+    },
+    "link_availability": {
+     "mean": 0.9155555555555557,
+     "sd": 0.000444444444444525
+    }
+   }
+  },
+  "effectiveness": {
+   "v1": {
+    "detection_accuracy": {
+     "mean": 0.333333333333333,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 1.0,
+     "sd": 0.0
+    }
+   },
+   "v2": {
+    "detection_accuracy": {
+     "mean": 0.888888888888889,
+     "sd": 0.009938079899999477
+    },
+    "isolation_accuracy": {
+     "mean": 0.8566666666666662,
+     "sd": 0.014907119849998447
+    },
+    "false_positive_rate": {
+     "mean": 0.04666666666666666,
+     "sd": 0.014907119849998585
+    },
+    "uncertain_frequency": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 1.0,
+     "sd": 0.0
+    }
+   }
+  },
+  "lag": {
+   "v1": {
+    "detection_accuracy": {
+     "mean": 0.333333333333333,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 1.0,
+     "sd": 0.0
+    }
+   },
+   "v2": {
+    "detection_accuracy": {
+     "mean": 0.8955555555555559,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.863333333333333,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.04,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 1.0,
+     "sd": 0.0
+    }
+   }
+  },
+  "power": {
+   "v1": {
+    "detection_accuracy": {
+     "mean": 0.775555555555556,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.663333333333333,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.666666666666667,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.22222222222222196,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 6.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 0.8666666666666669,
+     "sd": 0.0
+    }
+   },
+   "v2": {
+    "detection_accuracy": {
+     "mean": 0.984444444444444,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.763333333333333,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.04,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.155555555555556,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 6.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 0.8666666666666669,
+     "sd": 0.0
+    }
+   }
+  },
+  "blockage": {
+   "v1": {
+    "detection_accuracy": {
+     "mean": 0.995555555555556,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.00666666666666667,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.666666666666667,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 6.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 0.8666666666666669,
+     "sd": 0.0
+    }
+   },
+   "v2": {
+    "detection_accuracy": {
+     "mean": 0.995555555555556,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.00666666666666667,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.666666666666667,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 6.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 0.8666666666666669,
+     "sd": 0.0
+    }
+   }
+  },
+  "sensor": {
+   "v1": {
+    "detection_accuracy": {
+     "mean": 0.775555555555556,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.666666666666667,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.886666666666667,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 3.472,
+     "sd": 0.03346640106136305
+    },
+    "postclear_outage_s": {
+     "mean": 0.792,
+     "sd": 0.033466401061363005
+    },
+    "link_availability": {
+     "mean": 0.9228444444444444,
+     "sd": 0.0007436978013636812
+    }
+   },
+   "v2": {
+    "detection_accuracy": {
+     "mean": 0.9893333333333334,
+     "sd": 0.0009938079899998137
+    },
+    "isolation_accuracy": {
+     "mean": 0.996666666666667,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.025333333333333357,
+     "sd": 0.002981423969999734
+    },
+    "uncertain_frequency": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 1.0,
+     "sd": 0.0
+    }
+   }
+  },
+  "simultaneous": {
+   "v1": {
+    "detection_accuracy": {
+     "mean": 0.775555555555556,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.666666666666667,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.886666666666667,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 8.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 2.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 0.822222222222222,
+     "sd": 0.0
+    }
+   },
+   "v2": {
+    "detection_accuracy": {
+     "mean": 0.984444444444444,
+     "sd": 0.0
+    },
+    "isolation_accuracy": {
+     "mean": 0.763333333333333,
+     "sd": 0.0
+    },
+    "false_positive_rate": {
+     "mean": 0.04,
+     "sd": 0.0
+    },
+    "uncertain_frequency": {
+     "mean": 0.155555555555556,
+     "sd": 0.0
+    },
+    "link_outage_s": {
+     "mean": 6.0,
+     "sd": 0.0
+    },
+    "postclear_outage_s": {
+     "mean": 0.0,
+     "sd": 0.0
+    },
+    "link_availability": {
+     "mean": 0.8666666666666669,
+     "sd": 0.0
+    }
+   }
+  }
+ },
+ "by_size": {
+  "4": {
+   "v1": {
+    "link_availability": 0.9204000000000001,
+    "network_outage_s": 0.0,
+    "latency_s": 0.003884839746728141,
+    "throughput_bps": 600000000.0,
+    "packet_delivery_ratio": 1.0,
+    "detection_accuracy": 0.7205555555555557,
+    "isolation_accuracy": 0.09476190476190471,
+    "runtime_s": 0.4421078558333334
+   },
+   "v2": {
+    "link_availability": 0.9394444444444445,
+    "network_outage_s": 0.0,
+    "latency_s": 0.0036223902366207365,
+    "throughput_bps": 600000000.0,
+    "packet_delivery_ratio": 1.0,
+    "detection_accuracy": 0.9653333333333333,
+    "isolation_accuracy": 0.7152380952380951,
+    "runtime_s": 0.5705656781250008
+   }
+  },
+  "6": {
+   "v1": {
+    "link_availability": 0.9557777777777778,
+    "network_outage_s": 0.0,
+    "latency_s": 0.004989166731871075,
+    "throughput_bps": 600000000.0,
+    "packet_delivery_ratio": 1.0,
+    "detection_accuracy": 0.7205555555555557,
+    "isolation_accuracy": 0.09476190476190471,
+    "runtime_s": 0.505408109375
+   },
+   "v2": {
+    "link_availability": 0.9663580246913581,
+    "network_outage_s": 0.0,
+    "latency_s": 0.004464267711656262,
+    "throughput_bps": 600000000.0,
+    "packet_delivery_ratio": 1.0,
+    "detection_accuracy": 0.9653333333333333,
+    "isolation_accuracy": 0.7152380952380951,
+    "runtime_s": 0.3718519989583333
+   }
+  },
+  "8": {
+   "v1": {
+    "link_availability": 0.9668333333333333,
+    "network_outage_s": 0.0,
+    "latency_s": 0.004989166731871075,
+    "throughput_bps": 600000000.0,
+    "packet_delivery_ratio": 1.0,
+    "detection_accuracy": 0.7205555555555557,
+    "isolation_accuracy": 0.09476190476190471,
+    "runtime_s": 0.3963353466666666
+   },
+   "v2": {
+    "link_availability": 0.9747685185185183,
+    "network_outage_s": 0.0,
+    "latency_s": 0.004464267711656262,
+    "throughput_bps": 600000000.0,
+    "packet_delivery_ratio": 1.0,
+    "detection_accuracy": 0.9653333333333333,
+    "isolation_accuracy": 0.7152380952380951,
+    "runtime_s": 0.25968573749999996
+   }
+  },
+  "10": {
+   "v1": {
+    "link_availability": 0.9734666666666667,
+    "network_outage_s": 0.0,
+    "latency_s": 0.004989166731871075,
+    "throughput_bps": 600000000.0,
+    "packet_delivery_ratio": 1.0,
+    "detection_accuracy": 0.7205555555555557,
+    "isolation_accuracy": 0.09476190476190471,
+    "runtime_s": 0.4018941695833333
+   },
+   "v2": {
+    "link_availability": 0.9798148148148151,
+    "network_outage_s": 0.0,
+    "latency_s": 0.004464267711656262,
+    "throughput_bps": 600000000.0,
+    "packet_delivery_ratio": 1.0,
+    "detection_accuracy": 0.9653333333333333,
+    "isolation_accuracy": 0.7152380952380951,
+    "runtime_s": 0.283871715625
+   }
+  }
+ },
+ "recovery": [
+  {
+   "n": 4,
+   "v1_eligible": 25,
+   "v1_recovered": 10,
+   "v2_eligible": 20,
+   "v2_recovered": 5
+  },
+  {
+   "n": 6,
+   "v1_eligible": 25,
+   "v1_recovered": 10,
+   "v2_eligible": 20,
+   "v2_recovered": 5
+  },
+  {
+   "n": 8,
+   "v1_eligible": 25,
+   "v1_recovered": 10,
+   "v2_eligible": 20,
+   "v2_recovered": 5
+  },
+  {
+   "n": 10,
+   "v1_eligible": 25,
+   "v1_recovered": 10,
+   "v2_eligible": 20,
+   "v2_recovered": 5
+  }
+ ],
+ "stress": {
+  "v1": {
+   "trials": 12,
+   "verified": 4,
+   "postclear_outage_s": 3.513333333333333,
+   "false_positive_rate": 0.71571906354515,
+   "detection_accuracy": 0.57,
+   "isolation_accuracy": 0.0
+  },
+  "v2": {
+   "trials": 12,
+   "verified": 12,
+   "postclear_outage_s": 0.4066666666666667,
+   "false_positive_rate": 0.0261984392419175,
+   "detection_accuracy": 0.9823333333333334,
+   "isolation_accuracy": 0.7462686567164183
+  }
+ },
+ "reproduction": {
+  "matched_trials": 320,
+  "trials_with_differences": 0
+ }
+}
