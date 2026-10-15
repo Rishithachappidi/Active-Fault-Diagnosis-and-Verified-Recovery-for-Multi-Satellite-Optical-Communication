@@ -1,0 +1,190 @@
+{
+  "id": "n4_effectiveness_proposed_seed202",
+  "started": "14-Oct-2026 18:53:08",
+  "status": "completed",
+  "software": "26.1.0.3251617 (R2026a) Update 2",
+  "runtime": 0.69712,
+  "completed": "14-Oct-2026 18:53:08",
+  "metrics": {
+    "detection_accuracy": 0.33333333333333331,
+    "precision": null,
+    "recall": 0,
+    "false_positive_rate": 0,
+    "false_negative_rate": 1,
+    "isolation_accuracy": 0,
+    "uncertain_frequency": 0,
+    "diagnosis_time_s": null,
+    "rms_pointing_rad": 8.0690805302275082E-7,
+    "max_pointing_rad": 1.1827408846149938E-6,
+    "control_effort_Nm2s": 1.4239990526330536E-14,
+    "control_total_variation_Nm": 1.4623314482838227E-5,
+    "saturation_s": 0,
+    "command_delivery_rms_Nm": 2.3644094838090397E-8,
+    "settling_time_s": 0,
+    "link_availability": 1,
+    "affected_link_availability": 1,
+    "link_outage_s": 0,
+    "network_outage_s": 0,
+    "packet_delivery_ratio": 1,
+    "throughput_bps": 6.0E+8,
+    "latency_s": 0.0027805127615852143,
+    "runtime_s": 0.69712,
+    "link_recovery_time_s": null,
+    "recovery_success": null,
+    "unnecessary_recovery_attempts": 0,
+    "active_probe_s": 0,
+    "confusion": [
+      [
+        150,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        300,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "diagnosisEvents": [
+    {
+      "time_s": 0,
+      "edge": 1,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 2,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 3,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 4,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 5,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    }
+  ]
+}

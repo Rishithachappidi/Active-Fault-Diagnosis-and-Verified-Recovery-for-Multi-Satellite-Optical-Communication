@@ -1,0 +1,10 @@
+Name,Passed,Failed,Incomplete,Duration,Details
+test_revision_v2/test_truth_excluded,1,0,0,0.7929128,
+test_revision_v2/test_ambiguous_dark_link,1,0,0,0.1597007,
+test_revision_v2/test_no_information_is_not_unique,1,0,0,0.0530262,
+test_revision_v2/test_stale_correction_is_discarded,1,0,0,0.0610686,
+test_revision_v2/test_simulink_all_sizes,1,0,0,59.490807,
+test_revision_v2/test_physical_recovery_and_clearance,1,0,0,1.7761115,
+test_revision_v2/test_sensor_change_uses_rate_history,1,0,0,1.1254944,
+test_revision_v2/test_power_limited_combination_not_corrected,1,0,0,0.9799446,
+test_revision_v2/test_kinematic_assumption_is_necessary,1,0,0,0.0082281,

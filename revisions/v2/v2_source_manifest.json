@@ -1,0 +1,82 @@
+[
+  {
+    "path": "audit_metrics_v1.m",
+    "sha256": "3ab8dfdb4d0c8328732a91de61abf0509471f1176153b19dc0989b9975393015"
+  },
+  {
+    "path": "pilot_v2.m",
+    "sha256": "d777cc62c442d0005b8409a8e50718eca1457bd68d42b1db17f785635e2ff858"
+  },
+  {
+    "path": "plot_v2_comparison.m",
+    "sha256": "c6fb443b9ff18f976db9bcd5fae8c88952ae3515676287a58e789e9e85f8b7d2"
+  },
+  {
+    "path": "prepare_v2_models.m",
+    "sha256": "4566613cb0aeb44869d8b0e9c7f08f4e66b5ada6993d95753c704f74e5445297"
+  },
+  {
+    "path": "run_case_v2.m",
+    "sha256": "10f097eaab13c36cc98e438c78e2db59d641576797d1729585d4eba5a13ea87d"
+  },
+  {
+    "path": "run_v2_stress.m",
+    "sha256": "e9bcf9076d8744b96e35bc67fe1e3f07e8117e2f7bbf15179bdd5aecdcfb2407"
+  },
+  {
+    "path": "run_v2_suite.m",
+    "sha256": "cb75a859b1b97b140f5c3c28d25554ea94c2766bae80bd0d6f8055a881223678"
+  },
+  {
+    "path": "setup_v2.m",
+    "sha256": "a065efc6db30ffc559769819f030cf0475b965cb9152e012650e05a1fb9cf37a"
+  },
+  {
+    "path": "supervisor_v2.m",
+    "sha256": "fdac6d3f5ba475a4e0866b363519ce5eed636c6f7862b8012a555efd10e87f18"
+  },
+  {
+    "path": "test_v2.m",
+    "sha256": "e43974da17150cce82ab3aeab17afc899ef9261f8a11a015f51d7ff9c12f5be2"
+  },
+  {
+    "path": "v2_actuator_fit.m",
+    "sha256": "94c6c72201596fe2cc51e36b63bf04bd90eb0b8697baab7cf91b5c0dc0c91888"
+  },
+  {
+    "path": "v2_decision_step.m",
+    "sha256": "f88efe2591dba25c6afc93ae5a676a419c1560192b1059fbaa34930cacc0404e"
+  },
+  {
+    "path": "v2_extra_metrics.m",
+    "sha256": "1fc34b6648a282ac3ad359a310ac2807aebb513399392c863d667b4adb0fbf39"
+  },
+  {
+    "path": "v2_nominal.m",
+    "sha256": "a334cfd4cb3c7752686165c1b4e2cf5e1ecb5e65d496a62c67e24261fb5236aa"
+  },
+  {
+    "path": "v2_optical_fit.m",
+    "sha256": "a9c19791b7be2360a28b12e06c99905bd53edc3c4e2761ae7670bb6e550be75d"
+  },
+  {
+    "path": "models/SatelliteOpticalNetwork_10_v2.slx",
+    "sha256": "88dfe23dc93ce3c1aea1eb08f115c06476a3eb57224b9cb6dabf64093e27751e"
+  },
+  {
+    "path": "models/SatelliteOpticalNetwork_4_v2.slx",
+    "sha256": "6e48bb6c764d1f283261abf9d1faa8a356d1e4083768139a4baf43b04a7dac87"
+  },
+  {
+    "path": "models/SatelliteOpticalNetwork_6_v2.slx",
+    "sha256": "619246bb96bd494f32febe7524905afe33310647ab4c3212b41bc5275f5925af"
+  },
+  {
+    "path": "models/SatelliteOpticalNetwork_8_v2.slx",
+    "sha256": "07913dbbdc4c6ac252c9accfba0b70771f1500d19b091d6a7409f8ed0f6fff79"
+  },
+  {
+    "path": "tests/test_revision_v2.m",
+    "sha256": "aeaebcf2a29f0b14b9480efd661e524bc8749140601afadba8ed5959f4e61a61"
+  }
+]

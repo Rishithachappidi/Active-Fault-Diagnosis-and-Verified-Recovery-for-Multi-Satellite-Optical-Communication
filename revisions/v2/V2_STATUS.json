@@ -1,0 +1,18 @@
+{
+  "version": "v2",
+  "comparison_rows": 320,
+  "new_main_simulations": 256,
+  "preserved_baseline_trials_reused": 64,
+  "stress_simulations": 24,
+  "revision_tests_passed": 9,
+  "v1_metric_formula_unchanged": true,
+  "protected_files_verified": 1426,
+  "simulink_models": [
+    "models/SatelliteOpticalNetwork_4_v2.slx",
+    "models/SatelliteOpticalNetwork_6_v2.slx",
+    "models/SatelliteOpticalNetwork_8_v2.slx",
+    "models/SatelliteOpticalNetwork_10_v2.slx"
+  ],
+  "main_batch": "results/comparison_20261014_224749_328",
+  "publication_or_real_world_reliability_claim": false
+}
