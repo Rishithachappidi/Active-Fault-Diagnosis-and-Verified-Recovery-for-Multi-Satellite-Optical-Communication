@@ -3,7 +3,7 @@ services:
     name: satellite-optical-recovery
     runtime: static
     buildCommand: echo "static site, no build step"
-    staticPublishPath: ./optical-recovery
+    staticPublishPath: ./docs
     headers:
       - path: /*
         name: Cache-Control

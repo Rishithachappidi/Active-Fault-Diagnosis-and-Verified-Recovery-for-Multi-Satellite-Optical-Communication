@@ -1,1 +1,0 @@
-{"name":"formation-resilience-twin","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node --test","start":"node scripts/serve.mjs","experiments":"node scripts/experiments.mjs","verify:baseline":"node scripts/check-baseline.mjs"},"engines":{"node":">=20.11"}}

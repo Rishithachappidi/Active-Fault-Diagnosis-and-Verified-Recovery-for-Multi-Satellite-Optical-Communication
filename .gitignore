@@ -1,26 +1,13 @@
-# MATLAB / Simulink generated files
-**/slprj/
+# Simulink build caches (regenerated automatically)
+slprj/
 *.slxc
 *.autosave
+
+# MATLAB
 *.asv
-*.m~
-*.slx.r20*
+*.mex*
 
-# OS / editor files
+# OS / editor / tools
 .DS_Store
-Thumbs.db
-.vscode/
-.idea/
-
-# Keep the local IEEE reference paper in the project folder, but do not
-# publish it to a public GitHub repository unless redistribution is permitted.
-/reference/IEEE_REFERENCE_PAPER.pdf
-
-# Local research tools
-.venv/
-node_modules/
 __pycache__/
-results/progress.log
-results/tests.log
-# Local reference PDF is preserved but not automatically redistributed
-/IEEE_REFERENCE_PAPER.pdf
+.claude/

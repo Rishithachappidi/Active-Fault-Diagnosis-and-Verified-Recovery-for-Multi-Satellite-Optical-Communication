@@ -1,3 +1,0 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {simulate} from '../src/engine.mjs';
-const fixture=JSON.parse(readFileSync(new URL('../baseline/regression.json',import.meta.url)));
-for(const expected of fixture)test(`60 s repository-port regression: ${expected.mode}`,()=>{const r=simulate({scenario:'paper',mode:expected.mode,record:false});assert.deepEqual(r.final.updates,expected.updates);for(const key of ['attitudeRMSE','angularVelocityRMSE','controlEffort','saturationPercent'])assert.ok(Math.abs(r.metrics[key]-expected.metrics[key])<1e-9,key);});
