@@ -1,0 +1,5 @@
+n,trials_per_method,v1_eligible,v1_recovered,v2_eligible,v2_recovered,baseline_outages_prevented,newly_introduced_fault_window_outages
+4,40,25,10,20,5,5,0
+6,40,25,10,20,5,5,0
+8,40,25,10,20,5,5,0
+10,40,25,10,20,5,5,0

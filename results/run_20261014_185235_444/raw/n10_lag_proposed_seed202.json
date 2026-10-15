@@ -1,0 +1,290 @@
+{
+  "id": "n10_lag_proposed_seed202",
+  "started": "14-Oct-2026 18:58:39",
+  "status": "completed",
+  "software": "26.1.0.3251617 (R2026a) Update 2",
+  "runtime": 0.7227954,
+  "completed": "14-Oct-2026 18:58:40",
+  "metrics": {
+    "detection_accuracy": 0.33333333333333331,
+    "precision": null,
+    "recall": 0,
+    "false_positive_rate": 0,
+    "false_negative_rate": 1,
+    "isolation_accuracy": 0,
+    "uncertain_frequency": 0,
+    "diagnosis_time_s": null,
+    "rms_pointing_rad": 7.87521708888068E-7,
+    "max_pointing_rad": 1.2548107587592548E-6,
+    "control_effort_Nm2s": 7.619966727725466E-15,
+    "control_total_variation_Nm": 1.4611975594282077E-5,
+    "saturation_s": 0,
+    "command_delivery_rms_Nm": 1.8988695097602049E-8,
+    "settling_time_s": 0,
+    "link_availability": 1,
+    "affected_link_availability": 1,
+    "link_outage_s": 0,
+    "network_outage_s": 0,
+    "packet_delivery_ratio": 1,
+    "throughput_bps": 6.0E+8,
+    "latency_s": 0.0027805127615852143,
+    "runtime_s": 0.7227954,
+    "link_recovery_time_s": null,
+    "recovery_success": null,
+    "unnecessary_recovery_attempts": 0,
+    "active_probe_s": 0,
+    "confusion": [
+      [
+        150,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        300,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "diagnosisEvents": [
+    {
+      "time_s": 0,
+      "edge": 1,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 2,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 3,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 4,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 5,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 6,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 7,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 8,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 9,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 10,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 11,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 12,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 13,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 14,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    },
+    {
+      "time_s": 0,
+      "edge": 15,
+      "hypothesis_code": 0,
+      "alternatives": [],
+      "confidence": null,
+      "uncertain": false,
+      "evidence": "nominal residuals",
+      "recovery_action": 0
+    }
+  ]
+}
