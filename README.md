@@ -66,7 +66,7 @@ cp revisions/v2/results/comparison_YYYYMMDD_HHMMSS_SSS/figures/*.png docs/figure
 
 ## Integration with spacecraft attitude control
 
-[`integration/`](integration/INTEGRATION.md) couples this project with the spacecraft formation attitude controller ([Spacecraft-Formation-Attitude-Control](https://github.com/kaushalrog/Spacecraft-Formation-Attitude-Control)) in one Simulink model, `IntegratedFormationOptical.slx`. Each transmitting spacecraft's attitude error becomes a line-of-sight error on its optical terminal, after a minimal coarse-pointing stage. Run `int_run_all` in MATLAB from that folder: it reproduces both baselines, runs four scenarios and 15 integration checks. Results page: https://kaushalrog.github.io/Satellite-Optical-Fault-Recovery/integration.html
+[`integration/`](integration/INTEGRATION.md) is the integrated system: this optical link recovery combined with the spacecraft formation attitude controller ([Spacecraft-Formation-Attitude-Control](https://github.com/kaushalrog/Spacecraft-Formation-Attitude-Control)) in one Simulink model, `IntegratedFormationOptical.slx`. Each transmitting spacecraft's attitude error becomes a line-of-sight error on its optical terminal, after a minimal coarse-pointing stage. Run `int_run_all` in MATLAB from that folder: it reproduces both baselines, runs four scenarios and 15 integration checks. Results page: https://kaushalrog.github.io/Satellite-Optical-Fault-Recovery/integration.html
 
 ## Earlier project
 

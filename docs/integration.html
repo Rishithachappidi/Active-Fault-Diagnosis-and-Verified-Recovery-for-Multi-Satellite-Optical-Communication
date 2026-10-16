@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Attitude–Optical Integration</title>
+<title>Integrated Formation Laser Network</title>
 <meta name="description" content="Spacecraft formation attitude control coupled with satellite laser link fault diagnosis and recovery in one Simulink model: interface equations, four scenarios, results and tests.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -166,7 +166,7 @@ td.hl { font-weight: 600; color: var(--beam); }
     <nav aria-label="Sections">
       <a href="index.html" style="color:var(--beam)">▶ Simulator</a>
       <a href="results.html">Results</a>
-      <a href="#interface">Interface</a>
+      <a href="#interface">How it connects</a>
       <a href="#scenarios">Scenarios</a>
       <a href="#table">Table</a>
       <a href="#tests">Tests</a>
@@ -179,12 +179,10 @@ td.hl { font-weight: 600; color: var(--beam); }
   <div class="wrap">
     <div class="hero" style="grid-template-columns:minmax(0,1fr)">
       <div>
-        <div class="label">Integration · MATLAB R2026a · Simulink · one model, one clock</div>
-        <h1 style="margin-top:.75rem">Spacecraft attitude control <em>meets</em> laser link recovery</h1>
-        <p class="lede" style="max-width:80ch">The formation attitude controller (event-triggered and self-triggered, fault-tolerant SMC for four spacecraft) and the optical link supervisor (V2 diagnosis, probing, correction, rollback, verification and rerouting) run together in one Simulink model. They're joined at the physical point where they meet. The laser terminal is bolted to the spacecraft, so the spacecraft's attitude error tilts the beam.</p>
+        <div class="label">One integrated system · MATLAB R2026a · Simulink · one model, one clock</div>
+        <h1 style="margin-top:.75rem">Four spacecraft that hold their attitude <em>and keep their laser links alive</em></h1>
+        <p class="lede" style="max-width:80ch">One Simulink model of a four-spacecraft formation linked by lasers. Each spacecraft runs an event-triggered, fault-tolerant attitude controller. Each laser terminal sits on its spacecraft's body, so any attitude error tilts the beam. Coarse pointing removes most of that tilt, and the link supervisor diagnoses what's left along with any terminal faults: it probes, corrects, rolls back, verifies and reroutes traffic. Attitude, pointing and communication all run on the same clock and the same state.</p>
         <div class="meta">
-          <span class="label">Project A: <a href="https://kaushalrog.github.io/Spacecraft-Formation-Attitude-Control/">attitude control</a></span>
-          <span class="label">Project B: <a href="index.html">optical recovery</a></span>
           <span class="label"><a href="https://github.com/kaushalrog/Satellite-Optical-Fault-Recovery/tree/main/integration">Source on GitHub</a></span>
           <span class="label" style="color:var(--good)">15 / 15 checks passed</span>
         </div>
@@ -205,30 +203,30 @@ td.hl { font-weight: 600; color: var(--beam); }
         <div class="pair"><span class="to">0.36</span><span class="unit">s</span></div>
         <p>All of that spacecraft's links fail together, so rerouting can't help.</p></div>
     </div>
-    <p class="chartnote">Attitude Case 3 (self-triggered), 4 satellites, seed 101. Optical faults on link 1 (spacecraft 1 → 2) from 42 to 48 s. Link scoring over 41–50 s, using Project B's original metric code.</p>
+    <p class="chartnote">Attitude Case 3 (self-triggered), 4 satellites, seed 101. Optical faults on link 1 (spacecraft 1 → 2) from 42 to 48 s. Link scoring over 41–50 s, using the original link metric code.</p>
 
     <!-- INTERFACE -->
     <section class="block" id="interface">
-      <div class="head"><div class="label">The interface</div><h2>One equation joins the two projects</h2></div>
+      <div class="head"><div class="label">The interface</div><h2>How attitude reaches the laser beam</h2></div>
       <div class="cols">
         <div class="prose">
-          <p>Each optical link takes its transmitting spacecraft's attitude error from Project A, converts it to a rotation vector, and projects it onto the terminal's two pointing axes. A minimal coarse-pointing stage follows that error, and only its tracking residual <span class="mono">d</span> reaches the fine terminal. There it is added to the terminal model's existing optical-offset input.</p>
-          <p>Neither controller is edited or overridden. Project A commands body torque and Project B commands the fine-pointing reference. The interface only adds into its own slot. The residual is known onboard (attitude estimate minus coarse-stage position), so the supervisor receives it as telemetry and uses it in its optical power model. It never sees the fault label or the fault schedule.</p>
+          <p>Each optical link takes its transmitting spacecraft's attitude error from the attitude loop, converts it to a rotation vector, and projects it onto the terminal's two pointing axes. A minimal coarse-pointing stage follows that error, and only its tracking residual <span class="mono">d</span> reaches the fine terminal. There it is added to the terminal model's existing optical-offset input.</p>
+          <p>The three layers don't fight each other. The attitude controller commands body torque, coarse pointing follows the attitude, and the link supervisor commands only the fine-pointing reference. Each one adds into its own slot. The residual is known onboard (attitude estimate minus coarse-stage position), so the supervisor receives it as telemetry and uses it in its optical power model. It never sees the fault label or the fault schedule.</p>
           <p class="callout">Timeline: the formation converges from 0 to 40 s, the link is acquired at 40 s, and optical faults run from 42 to 48 s. In S2 and S4 a 0.05 N·m torque pulse hits spacecraft 1 from 43.0 to 43.5 s.</p>
         </div>
         <div>
           <div class="eq">
-σₑ = σᵢ − σ_d(t)                 Project A attitude error (MRP)<br>
+σₑ = σᵢ − σ_d(t)                 attitude error (MRP)<br>
 φ  = 4·atan(|σₑ|)·σₑ/|σₑ|       rotation vector, rad<br>
 φ_LOS = [φ_y, φ_z]              boresight along body +x<br>
 ċ = (φ_LOS − c)/τ_CPA,  d = φ_LOS − c   coarse pointing, τ = 5 ms<br>
-optical error = θ_terminal + δ_fault + d   Project B plant, u(9:10)<br>
+optical error = θ_terminal + δ_fault + d   laser terminal plant<br>
 P = P₀·g·exp(−2|q + d + δ|²/α²)   supervisor power model (d as telemetry)
           </div>
         </div>
       </div>
-      <figure class="wideimg"><a href="figures/integration/simulink_model.png" target="_blank" rel="noopener"><img src="figures/integration/simulink_model.png" alt="IntegratedFormationOptical Simulink model: Project A controller and dynamics on the left, the AttitudeToLOS interface with its coarse-pointing integrator in the middle, Project B supervisor and five optical terminals on the right" loading="lazy"></a></figure>
-      <p class="chartnote">IntegratedFormationOptical.slx. Project A blocks are top left, the interface is in the middle, and Project B's supervisor and five optical terminals are bottom right. Select the image to open it full size.</p>
+      <figure class="wideimg"><a href="figures/integration/simulink_model.png" target="_blank" rel="noopener"><img src="figures/integration/simulink_model.png" alt="IntegratedFormationOptical Simulink model: attitude controller and spacecraft dynamics on the left, attitude-to-beam coupling with coarse pointing in the middle, link supervisor and five laser terminals on the right" loading="lazy"></a></figure>
+      <p class="chartnote">IntegratedFormationOptical.slx. The attitude loop is top left, the attitude-to-beam coupling with coarse pointing is in the middle, and the link supervisor and five laser terminals are bottom right. Select the image to open it full size.</p>
     </section>
 
     <!-- SCENARIOS -->
@@ -244,13 +242,13 @@ P = P₀·g·exp(−2|q + d + δ|²/α²)   supervisor power model (d as telemet
         <figure><a href="figures/integration/S4_combined.png" target="_blank" rel="noopener"><img src="figures/integration/S4_combined.png" alt="S4 traces" loading="lazy"></a>
           <figcaption><b>S4 · Disturbance plus pointing fault</b>The torque pulse lands while V2 is probing. It still names the fault (73%), recovers the link, and keeps link 1 down for less time than in S3 (3.74 s vs 3.80 s).</figcaption></figure>
       </div>
-      <figure class="wideimg" style="background:#000"><a href="figures/integration/coupling_comparison.png" target="_blank" rel="noopener"><img src="figures/integration/coupling_comparison.png" alt="Received power and diagnosis for a pointing fault: Project B alone, naive coupling and the integrated system" loading="lazy"></a></figure>
-      <p class="chartnote">The same pointing fault three ways. Project B alone recovers. With coupling, but the supervisor unaware of the residual, it never names the fault and the link stays down. The integrated system matches Project B alone.</p>
+      <figure class="wideimg" style="background:#000"><a href="figures/integration/coupling_comparison.png" target="_blank" rel="noopener"><img src="figures/integration/coupling_comparison.png" alt="Received power and diagnosis for a pointing fault: attitude coupling off, supervisor unaware of attitude, and the full integrated system" loading="lazy"></a></figure>
+      <p class="chartnote">The same pointing fault three ways. With attitude coupling switched off, the link recovers. With coupling, but the supervisor unaware of the attitude residual, it never names the fault and the link stays down. With the full integrated system, the link recovers just as it does with coupling off.</p>
     </section>
 
     <!-- TABLE -->
     <section class="block" id="table">
-      <div class="head"><div class="label">Results</div><h2>Independent baselines vs the integrated system</h2></div>
+      <div class="head"><div class="label">Results</div><h2>The integrated system, and what each part contributes</h2></div>
       <div class="tbl">
         <table>
           <thead><tr><th>Run</th><th class="num">A case</th><th class="num">Residual RMS / max <span style="text-transform:none">(µrad)</span></th><th class="num">Detection</th><th class="num">Named fault</th><th class="num">False alarms</th><th class="num">Link 1 down</th><th class="num">No route</th><th class="num">Recovered</th><th class="num">A triggers</th></tr></thead>
@@ -259,7 +257,7 @@ P = P₀·g·exp(−2|q + d + δ|²/α²)   supervisor power model (d as telemet
             <tr><td><b>S2</b> attitude disturbance</td><td class="num">3</td><td class="num">6.2 / 27.0</td><td class="num">100%</td><td class="num">n/a</td><td class="num">0%</td><td class="num">0.36 s</td><td class="num hl">0.36 s</td><td class="num">yes</td><td class="num">3103</td></tr>
             <tr><td><b>S3</b> optical pointing fault</td><td class="num">3</td><td class="num">4.1 / 6.3</td><td class="num">98.4%</td><td class="num">73.0%</td><td class="num">4.0%</td><td class="num">3.80 s</td><td class="num">0.00 s</td><td class="num">yes</td><td class="num">3084</td></tr>
             <tr><td><b>S4</b> disturbance + fault</td><td class="num">3</td><td class="num">6.2 / 27.0</td><td class="num">98.4%</td><td class="num">73.0%</td><td class="num">4.0%</td><td class="num">3.74 s</td><td class="num">0.36 s</td><td class="num">yes</td><td class="num">3103</td></tr>
-            <tr><td>Project B alone, pointing fault</td><td class="num">3</td><td class="num">0</td><td class="num">98.4%</td><td class="num">73.0%</td><td class="num">4.0%</td><td class="num">3.72 s</td><td class="num">0.00 s</td><td class="num">yes</td><td class="num">3084</td></tr>
+            <tr><td>Attitude coupling off, pointing fault</td><td class="num">3</td><td class="num">0</td><td class="num">98.4%</td><td class="num">73.0%</td><td class="num">4.0%</td><td class="num">3.72 s</td><td class="num">0.00 s</td><td class="num">yes</td><td class="num">3084</td></tr>
             <tr><td>Supervisor not told residual, pointing fault</td><td class="num">3</td><td class="num">4.1 / 6.3</td><td class="num">86.2%</td><td class="num hl">0%</td><td class="num hl">40.7%</td><td class="num hl">6.00 s</td><td class="num">0.00 s</td><td class="num hl">no</td><td class="num">3084</td></tr>
             <tr><td>No coarse pointing, healthy</td><td class="num">3</td><td class="num hl">2915 / 5299</td><td class="num">0%</td><td class="num">n/a</td><td class="num hl">100%</td><td class="num hl">9.00 s</td><td class="num hl">9.00 s</td><td class="num">no</td><td class="num">3084</td></tr>
             <tr><td>S1, attitude Case 1 (time-driven)</td><td class="num">1</td><td class="num">1.7 / 2.0</td><td class="num">100%</td><td class="num">n/a</td><td class="num">0%</td><td class="num">0.00 s</td><td class="num">0.00 s</td><td class="num">n/a</td><td class="num">2004</td></tr>
@@ -277,8 +275,8 @@ P = P₀·g·exp(−2|q + d + δ|²/α²)   supervisor power model (d as telemet
         <ul class="tests">
           <li><b>PASS</b>Signal dimensions and sample times (B logs at 20 ms, A at 1 ms)</li>
           <li><b>PASS</b>LOS equals the MRP→rotation-vector projection, in rad (difference 0)</li>
-          <li><b>PASS</b>Project A controller triggers on all 4 spacecraft in the coupled run</li>
-          <li><b>PASS</b>Project B supervisor probes, corrects and rolls back (S3)</li>
+          <li><b>PASS</b>Attitude controller triggers on all 4 spacecraft</li>
+          <li><b>PASS</b>Link supervisor probes, corrects and rolls back (S3)</li>
           <li><b>PASS</b>Attitude disturbance raises the LOS residual, 6.3 → 27.0 µrad</li>
           <li><b>PASS</b>Disturbance causes a link-1 outage only when coupled</li>
           <li><b>PASS</b>No fault truth or schedule in the decision step or the interface</li>
@@ -287,10 +285,10 @@ P = P₀·g·exp(−2|q + d + δ|²/α²)   supervisor power model (d as telemet
         <ul class="tests">
           <li><b>PASS</b>Network throughput matches routes recomputed from link availability</li>
           <li><b>PASS</b>Network outage only while all of spacecraft 1's links are down</li>
-          <li><b>PASS</b>Project A trigger counts reproduced with the interface off</li>
-          <li><b>PASS</b>Project A steady-state accuracy reproduced, all cases</li>
-          <li><b>PASS</b>Project B sensor-fault trial reproduced exactly</li>
-          <li><b>PASS</b>Project B pointing trial: detection, false alarms and recovery equal</li>
+          <li><b>PASS</b>Attitude-only behaviour reproduced: trigger counts</li>
+          <li><b>PASS</b>Attitude-only behaviour reproduced: steady-state accuracy</li>
+          <li><b>PASS</b>Link-only behaviour reproduced: sensor fault, exactly</li>
+          <li><b>PASS</b>Link-only behaviour reproduced: pointing fault detection, false alarms, recovery</li>
           <li><b>PASS</b>Integrated system keeps the standalone V2 diagnosis under coupling</li>
         </ul>
       </div>
@@ -309,8 +307,8 @@ int_run_all     % baselines → build model → validate → 4 scenarios → 15 
           <li>Coarse pointing is a first-order follower with perfect attitude knowledge and no range or rate limits.</li>
         </ul></div>
         <div class="prose"><ul>
-          <li>The model runs at Project A's 1 ms solver. Project B's exact isolation for a pointing fault is 0.730 here vs 0.763 in its own runs; every other checked metric is equal.</li>
-          <li>The supervisor used is a three-line copy of V2 that takes the residual as telemetry. Project B's original files are untouched.</li>
+          <li>The whole model runs at the attitude loop's 1 ms solver. Exact isolation of a pointing fault is 0.730 vs 0.763 in the earlier link-only runs at 20 ms; every other checked metric is equal.</li>
+          <li>The link supervisor is V2 with three added lines that take the attitude residual as telemetry.</li>
           <li>One seed, four satellites, one disturbance profile, only link 1 faulted, and no Monte Carlo sweep yet.</li>
           <li>Simulation only. Nothing here shows flight readiness.</li>
         </ul></div>
@@ -321,7 +319,7 @@ int_run_all     % baselines → build model → validate → 4 scenarios → 15 
 
 <footer>
   <div class="wrap">
-    <div>Integration of Spacecraft-Formation-Attitude-Control and Satellite-Optical-Fault-Recovery · MATLAB R2026a / Simulink</div>
+    <div>Integrated formation attitude control and laser link recovery · MATLAB R2026a / Simulink</div>
     <div>Full write-up: <a href="https://github.com/kaushalrog/Satellite-Optical-Fault-Recovery/blob/main/integration/INTEGRATION.md">integration/INTEGRATION.md</a></div>
   </div>
 </footer>
