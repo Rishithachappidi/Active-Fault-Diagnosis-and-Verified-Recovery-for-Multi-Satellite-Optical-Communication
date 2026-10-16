@@ -4,7 +4,7 @@ Active fault diagnosis and verified recovery for multi-satellite optical (laser)
 
 A supervisor watches each optical crosslink, identifies what failed (pointing, actuator, optical power, blockage or sensor faults), applies a correction only when it can actually restore service, and removes that correction once the fault clears. The repository compares the original supervisor (V1) with a revised one (V2) on networks of 4, 6, 8 and 10 satellites.
 
-**Live simulator:** https://kaushalrog.github.io/Satellite-Optical-Fault-Recovery/ · **MATLAB results:** https://kaushalrog.github.io/Satellite-Optical-Fault-Recovery/results.html
+**Live simulator:** https://kaushalrog.github.io/Satellite-Optical-Fault-Recovery/ · **MATLAB results:** https://kaushalrog.github.io/Satellite-Optical-Fault-Recovery/results.html · **Attitude integration:** https://kaushalrog.github.io/Satellite-Optical-Fault-Recovery/integration.html
 
 ## Results at a glance
 
@@ -66,7 +66,7 @@ cp revisions/v2/results/comparison_YYYYMMDD_HHMMSS_SSS/figures/*.png docs/figure
 
 ## Integration with spacecraft attitude control
 
-[`integration/`](integration/INTEGRATION.md) couples this project with the spacecraft formation attitude controller ([Spacecraft-Formation-Attitude-Control](https://github.com/kaushalrog/Spacecraft-Formation-Attitude-Control)) in one Simulink model, `IntegratedFormationOptical.slx`. Each transmitting spacecraft's attitude error becomes a line-of-sight error on its optical terminal, after a minimal coarse-pointing stage. Run `int_run_all` in MATLAB from that folder: it reproduces both baselines, runs four scenarios and 15 integration checks.
+[`integration/`](integration/INTEGRATION.md) couples this project with the spacecraft formation attitude controller ([Spacecraft-Formation-Attitude-Control](https://github.com/kaushalrog/Spacecraft-Formation-Attitude-Control)) in one Simulink model, `IntegratedFormationOptical.slx`. Each transmitting spacecraft's attitude error becomes a line-of-sight error on its optical terminal, after a minimal coarse-pointing stage. Run `int_run_all` in MATLAB from that folder: it reproduces both baselines, runs four scenarios and 15 integration checks. Results page: https://kaushalrog.github.io/Satellite-Optical-Fault-Recovery/integration.html
 
 ## Earlier project
 
