@@ -1,8 +1,10 @@
 # Project website
 
-Static page presenting the V2 comparison results. No build step.
+Static site with two pages. No build step.
 
-- `index.html`: the page
+- `index.html` + `sim/`: live simulator. `sim/engine.js` is a JavaScript port of the MATLAB/Simulink model (optics, pointing control, fault injection, V1 and V2 supervisors, rerouting, metrics); `sim/app.js` is the interface.
+- `results.html`: the verified MATLAB comparison results.
+
 - `data.js` / `data.json`: numbers summarized by `build_data.py` from a comparison batch in `revisions/v2/results/`
 - `figures/`: MATLAB figures from the same batch
 
