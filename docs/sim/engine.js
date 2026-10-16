@@ -10,7 +10,7 @@ export const SCENARIOS = ['normal', 'pointing', 'effectiveness', 'lag', 'power',
 export const PROFILES = ['sudden', 'gradual', 'intermittent', 'persistent'];
 export const CLASS_NAMES = ['Healthy', 'Boresight offset', 'Actuator gain loss', 'Actuator lag', 'Optical power loss',
   'Blockage', 'Sensor bias', 'Uncertain', 'Offset + power loss'];
-export const ACTION_NAMES = ['Monitoring', 'Routing traffic around the link', 'Probing the beam', 'Applying a correction', 'Flagging the actuator for maintenance', 'Removing its correction'];
+export const ACTION_NAMES = ['Monitor', 'Reroute traffic', 'Probing optics', 'Apply correction', 'Flag actuator maintenance', 'Roll back correction'];
 
 // ---------- configuration ----------
 export function defaultConfig(n = 4) {

@@ -3,250 +3,252 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Satellite Laser Link Recovery</title>
-<meta name="description" content="A MATLAB/Simulink project on diagnosing and recovering failed laser links between satellites, with a browser version of the model you can run.">
+<title>Satellite Optical Recovery Simulator</title>
+<meta name="description" content="Live browser simulator of laser-link fault diagnosis and verified recovery in a satellite network. Inject faults and watch the V1 and V2 supervisors respond.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Simulator: controls across the top, three working panes, charts in a row, log and benchmark below. */
-.sim { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-.sim-bar { display: flex; flex-wrap: wrap; gap: .8rem 1.4rem; align-items: end; padding: .9rem 1.1rem; border-bottom: 1px solid var(--line); background: var(--soft); }
-.sim-bar label { display: grid; gap: .2rem; font-size: .8rem; color: var(--muted); }
-.sim select, .sim input[type=number] { font: inherit; font-size: .92rem; color: var(--fg); background: var(--card); border: 1px solid var(--line); border-radius: 5px; padding: .42rem .5rem; min-width: 0; }
-.sim input[type=number] { width: 5.2rem; }
-.sim input[type=range] { accent-color: var(--laser); }
-.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; background: var(--card); }
-.seg button { font: inherit; font-size: .92rem; color: var(--fg); background: transparent; border: 0; padding: .42rem .75rem; cursor: pointer; }
-.seg button + button { border-left: 1px solid var(--line); }
-.seg button[aria-pressed="true"] { background: var(--fg); color: var(--card); }
-.run { font: 600 .95rem var(--sans); background: var(--laser); color: #fff; border: 0; border-radius: 5px; padding: .55rem 1.3rem; cursor: pointer; }
-.run:disabled { opacity: .55; }
-.sev { display: grid; gap: .2rem; font-size: .8rem; color: var(--muted); min-width: 150px; }
-.tries { padding: .55rem 1.1rem; font-size: .88rem; color: var(--muted); border-bottom: 1px solid var(--line); }
-.tries button { font: inherit; color: var(--link); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+/* Layout: an operator console — control rail on the left, live views in the centre, supervisor log and metrics on the right. */
+:root {
+  --paper: #f3f5f7; --panel: #ffffff; --ink: #142029; --muted: #55636f; --rule: #d5dce2; --grid: #e7ecf0;
+  --v1: #2f7fd1; --v2: #e0702a; --beam: #d8442f; --good: #23845a; --warn: #b7791f; --space: #e9eef3;
+  --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0d141a; --panel: #131c24; --ink: #e5ecf1; --muted: #93a2ae; --rule: #26333e; --grid: #1c2731;
+  --v1: #5aa2ec; --v2: #f08a46; --beam: #ff6a52; --good: #4cc38a; --warn: #e3a948; --space: #0a1016; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #0d141a; --panel: #131c24; --ink: #e5ecf1; --muted: #93a2ae; --rule: #26333e; --grid: #1c2731;
+  --v1: #5aa2ec; --v2: #f08a46; --beam: #ff6a52; --good: #4cc38a; --warn: #e3a948; --space: #0a1016; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 .9375rem/1.5 var(--body); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+a { color: inherit; text-underline-offset: 3px; text-decoration-color: var(--v2); }
+button, select, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--v2); outline-offset: 2px; }
+.label { font: 500 .75rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.v1c { color: var(--v1); } .v2c { color: var(--v2); }
 
-.panes { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .95fr) minmax(0, 1fr); }
-.panes > div { min-width: 0; padding: .9rem 1.1rem 1rem; }
-.panes > div + div { border-left: 1px solid var(--line); }
-@media (max-width: 1150px) { .panes { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } .panes > .side { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; } }
-@media (max-width: 760px) { .panes { grid-template-columns: 1fr; } .panes > div + div { border-left: 0; border-top: 1px solid var(--line); } .panes > .side { grid-template-columns: 1fr; } }
-.ptitle { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; flex-wrap: wrap; margin-bottom: .5rem; font-size: .9rem; }
-.ptitle b { font-weight: 600; }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+.bar .in { max-width: 1440px; margin: 0 auto; padding: .6rem max(16px, 2vw); display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
+.brand { font: 600 1.15rem/1 var(--display); letter-spacing: .02em; text-decoration: none; white-space: nowrap; }
+.bar nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.bar nav a { font: 500 .75rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); text-decoration: none; }
+.bar nav a[aria-current] { color: var(--ink); }
+@media (max-width: 560px) { .brand { font-size: 1rem; } .bar nav { gap: .7rem; flex-wrap: nowrap; } .bar nav a:last-child { display: none; } }
+
+.wrap { max-width: 1440px; margin: 0 auto; padding-inline: max(16px, 2vw); padding-block: 1.25rem 3rem; }
+.intro { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.intro h1 { font: 700 clamp(1.9rem, 4vw, 2.8rem)/1 var(--display); text-transform: uppercase; margin: .35rem 0 0; text-wrap: balance; }
+.intro h1 em { font-style: normal; color: var(--beam); }
+.intro p { margin: .5rem 0 0; color: var(--muted); max-width: 70ch; }
+
+.console { display: grid; grid-template-columns: 270px minmax(0, 1fr) 330px; gap: 1rem; align-items: start; }
+@media (max-width: 1180px) { .console { grid-template-columns: 260px minmax(0, 1fr); } .side { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; } }
+@media (max-width: 760px) { .console { grid-template-columns: 1fr; } .side { grid-template-columns: 1fr; } }
+.console > * { min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; }
+.ph { display: flex; justify-content: space-between; align-items: center; gap: .5rem; padding: .7rem .9rem; border-bottom: 1px solid var(--rule); }
+.ph h2 { margin: 0; font: 600 1.05rem/1 var(--display); letter-spacing: .03em; text-transform: uppercase; }
+.pad { padding: .9rem; display: grid; gap: .85rem; }
+
+/* controls */
+.field { display: grid; gap: .3rem; }
+.field select, .field input[type=number] { width: 100%; padding: .5rem .55rem; border: 1px solid var(--rule); border-radius: 5px; background: var(--paper); }
+.seg { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--rule); border-radius: 5px; overflow: hidden; }
+.seg button { border: 0; background: transparent; padding: .45rem 0; cursor: pointer; font-family: var(--mono); font-size: .85rem; }
+.seg button + button { border-left: 1px solid var(--rule); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+input[type=range] { width: 100%; accent-color: var(--beam); }
+.rangehead { display: flex; justify-content: space-between; }
+.btn { border: 1px solid var(--rule); background: transparent; border-radius: 6px; padding: .55rem .8rem; cursor: pointer; font: 500 .8rem var(--mono); letter-spacing: .03em; }
+.btn.primary { background: var(--beam); border-color: var(--beam); color: #fff; font-weight: 600; }
+.btn:disabled { opacity: .5; cursor: progress; }
+.hint { font-size: .8rem; color: var(--muted); margin: 0; }
+.presets { display: flex; flex-wrap: wrap; gap: .35rem; }
+.presets button { font: 500 .72rem var(--mono); padding: .35rem .5rem; border: 1px dashed var(--rule); background: transparent; border-radius: 4px; cursor: pointer; }
+
+/* centre */
+.views { display: grid; gap: 1rem; }
+.stage { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+@media (max-width: 960px) { .stage { grid-template-columns: 1fr; } }
+.stage > div { min-width: 0; position: relative; }
+.stage > div + div { border-left: 1px solid var(--rule); }
+@media (max-width: 960px) { .stage > div + div { border-left: 0; border-top: 1px solid var(--rule); } }
 canvas { display: block; width: 100%; }
-#net { aspect-ratio: 4 / 3; }
-#scope { aspect-ratio: 1; width: min(100%, 320px); margin: 0 auto; }
-.which { display: inline-flex; gap: .3rem; }
-.which button { font: inherit; font-size: .82rem; border: 1px solid var(--line); border-radius: 5px; background: var(--card); padding: .15rem .6rem; cursor: pointer; color: var(--muted); }
-.which button[data-impl="v1"][aria-pressed="true"] { color: #fff; background: var(--v1); border-color: var(--v1); }
-.which button[data-impl="v2"][aria-pressed="true"] { color: #fff; background: var(--v2); border-color: var(--v2); }
-.status { font: 400 1rem/1.55 var(--serif); padding: .2rem 0 .8rem; border-bottom: 1px solid var(--line); margin-bottom: .6rem; min-height: 7.5em; }
-.status .t { font: 600 1.35rem/1 var(--sans); font-variant-numeric: tabular-nums; display: block; margin-bottom: .35rem; }
-.mt { margin: 0; font-size: .88rem; }
-.mt td, .mt th { padding: .35rem 0; }
-.mt td + td, .mt th + th { text-align: right; padding-left: .6rem; font-variant-numeric: tabular-nums; }
-.transport { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; padding: .6rem 1.1rem; border-top: 1px solid var(--line); background: var(--soft); }
-.transport button { font: inherit; font-size: .9rem; border: 1px solid var(--line); border-radius: 5px; background: var(--card); color: var(--fg); padding: .3rem .8rem; cursor: pointer; }
-.transport input[type=range] { flex: 1 1 260px; }
-.charts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.charts > div { min-width: 0; padding: .8rem 1.1rem 1rem; }
-.charts > div + div { border-left: 1px solid var(--line); }
-@media (max-width: 1000px) { .charts { grid-template-columns: 1fr; } .charts > div + div { border-left: 0; border-top: 1px solid var(--line); } }
-.charts h4 { font: 600 .88rem var(--sans); margin: 0 0 .4rem; }
-.key { font-size: .8rem; color: var(--muted); margin-top: .35rem; }
-.key i { display: inline-block; width: 14px; height: 3px; vertical-align: middle; margin: 0 .3rem 0 .7rem; }
-.key i:first-child { margin-left: 0; }
-#cPow, #cPt { height: 170px; }
-#cCls { height: 96px; }
-.classkey { color: var(--muted); font-size: .78rem; margin-top: .4rem; line-height: 1.7; }
-.classkey span { white-space: nowrap; margin-right: .7rem; }
-.classkey i { display: inline-block; width: 10px; height: 10px; margin-right: .3rem; vertical-align: -1px; border-radius: 2px; }
-.below { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-top: 1px solid var(--line); }
-.below > div { min-width: 0; padding: .9rem 1.1rem 1.1rem; }
-.below > div + div { border-left: 1px solid var(--line); }
-@media (max-width: 900px) { .below { grid-template-columns: 1fr; } .below > div + div { border-left: 0; border-top: 1px solid var(--line); } }
-.log { max-height: 280px; overflow-y: auto; font-size: .9rem; }
-.log button { all: unset; display: grid; grid-template-columns: 3.4rem 2rem 1fr; gap: .4rem; padding: .32rem 0; border-bottom: 1px solid var(--line); cursor: pointer; width: 100%; }
-.log button:focus-visible { outline: 2px solid var(--laser); }
-.log button.future { color: var(--muted); }
-.log .tm { font-variant-numeric: tabular-nums; color: var(--muted); }
-.log .v1, .log .v2 { font-weight: 600; }
-.sweep table td, .sweep table th { font-size: .82rem; }
-.sweep button { font: inherit; font-size: .9rem; border: 1px solid var(--line); border-radius: 5px; background: var(--card); color: var(--fg); padding: .35rem .9rem; cursor: pointer; }
-progress { width: 100%; accent-color: var(--laser); }
+.cv-net { aspect-ratio: 16 / 11; background: var(--space); }
+.cv-scope { aspect-ratio: 1; width: min(100%, 340px); margin: 0 auto; }
+.overlay { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; padding: .6rem .8rem; background: var(--space); border-bottom: 1px solid var(--rule); }
+.overlay .status { margin-top: 0; }
+.clock { font: 600 1.6rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.status { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .3rem; }
+.pill { font: 500 .7rem/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; padding: .3rem .45rem; border-radius: 999px; border: 1px solid var(--rule); background: var(--panel); }
+.pill.ok { color: var(--good); border-color: color-mix(in srgb, var(--good) 45%, transparent); }
+.pill.bad { color: var(--beam); border-color: color-mix(in srgb, var(--beam) 45%, transparent); }
+.pill.warn { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, transparent); }
+.scopehead { padding: .7rem .9rem 0; display: flex; justify-content: space-between; gap: .5rem; flex-wrap: wrap; }
+.scopeimpl { display: flex; gap: .35rem; }
+.scopeimpl button { font: 500 .72rem var(--mono); padding: .3rem .55rem; border-radius: 999px; border: 1px solid var(--rule); background: transparent; cursor: pointer; }
+.scopeimpl button[aria-pressed="true"] { border-color: currentColor; }
+.readout { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; padding: .2rem .9rem .9rem; }
+.readout div { display: grid; gap: .1rem; }
+.readout b { font: 600 1.15rem/1.1 var(--mono); font-variant-numeric: tabular-nums; }
 
-.howtitle { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
-.howtitle p { margin: 0; max-width: 60ch; color: var(--muted); }
+.transport { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; padding: .7rem .9rem; }
+.transport input[type=range] { flex: 1 1 200px; }
+.transport select { padding: .45rem; border: 1px solid var(--rule); border-radius: 5px; background: var(--paper); }
+
+.charts { display: grid; gap: .2rem; padding: .4rem .9rem .9rem; }
+.chart h3 { margin: .6rem 0 .2rem; font: 500 .75rem var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--muted); display: flex; justify-content: space-between; gap: .5rem; flex-wrap: wrap; }
+.legend { display: flex; gap: .9rem; flex-wrap: wrap; font: 500 .72rem var(--mono); color: var(--muted); text-transform: none; letter-spacing: 0; }
+.legend i { display: inline-block; width: .8em; height: .8em; border-radius: 2px; margin-right: .35em; vertical-align: -.08em; }
+.cv-chart { height: 150px; }
+.chart h3 .u { text-transform: none; }
+.cv-strip { height: 74px; }
+.classkey { display: flex; flex-wrap: wrap; gap: .3rem .8rem; font: 400 .72rem var(--mono); color: var(--muted); padding-top: .3rem; }
+
+/* side */
+.side { display: grid; gap: 1rem; }
+.mt { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.mt th, .mt td { padding: .45rem .3rem; border-bottom: 1px solid var(--rule); text-align: right; font-variant-numeric: tabular-nums; }
+.mt th:first-child, .mt td:first-child { text-align: left; }
+.mt th { font: 500 .7rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.mt td.win { font-weight: 600; }
+.log { max-height: 360px; overflow-y: auto; display: grid; }
+.log button { all: unset; display: grid; grid-template-columns: 3.4rem 2rem 1fr; gap: .4rem; padding: .45rem .9rem; border-bottom: 1px solid var(--rule); font-size: .82rem; cursor: pointer; }
+.log button:hover, .log button:focus-visible { background: color-mix(in srgb, var(--ink) 5%, transparent); }
+.log button.past { opacity: 1; } .log button.future { opacity: .45; }
+.log .tag { font: 600 .7rem/1.6 var(--mono); }
+.log .tm { font-family: var(--mono); color: var(--muted); }
+.note { font-size: .8rem; color: var(--muted); padding: .8rem .9rem; margin: 0; }
+.sweep table { width: 100%; border-collapse: collapse; font-size: .78rem; }
+.sweep th, .sweep td { padding: .35rem .3rem; border-bottom: 1px solid var(--rule); text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); }
+.sweep th:first-child, .sweep td:first-child { text-align: left; font-family: var(--body); }
+.sweep th { font-size: .66rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 500; }
+progress { width: 100%; accent-color: var(--beam); }
+footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: .82rem; }
+footer .in { max-width: 1440px; margin: 0 auto; padding: 1.5rem max(16px, 2vw) 2.5rem; display: grid; gap: .4rem; }
 </style>
 </head>
 <body>
-<header class="mast">
-  <div class="wrap">
-    <nav class="top" aria-label="Pages">
-      <a class="home" href="index.html">Satellite laser link recovery</a>
-      <div>
-        <a href="index.html" aria-current="page">Project</a>
-        <a href="results.html">Full results</a>
-        <a href="https://github.com/kaushalrog/Satellite-Optical-Fault-Recovery">Code on GitHub</a>
-      </div>
-    </nav>
-    <div class="hero">
-      <div>
-        <h1>Working out why a laser link between satellites failed, and <em>whether it can be fixed</em></h1>
-        <div class="byline">Rishitha Chappidi and Kaushal Reddy, October 2026. MATLAB R2026a and Simulink.</div>
-        <div class="facts">
-          <div><b>320</b><span>Simulink trials</span></div>
-          <div><b>4–10</b><span>satellites</span></div>
-          <div><b>7</b><span>kinds of fault</span></div>
-          <div><b>9.5% → 71.5%</b><span>faults named correctly</span></div>
-        </div>
-      </div>
-      <div class="intro">
-        <p>Satellites can send data to each other with lasers. The beam is so narrow that at 800 km, a pointing error of 20 microradians moves the spot about 16 metres.</p>
-        <p>When received power drops, re-pointing looks like the fix. But the beam may be misaligned, the transmitter weaker, the path blocked, or the angle sensor wrong, and re-pointing only helps with some of these. So we ask three questions: is something wrong, what is wrong, and can the link come back? We compare our first supervisor (V1) with a revised one (V2).</p>
-      </div>
+<header class="bar"><div class="in">
+  <a class="brand" href="index.html">SAT·OPTICAL·RECOVERY</a>
+  <nav aria-label="Pages">
+    <a href="index.html" aria-current="page">Simulator</a>
+    <a href="results.html">MATLAB results</a>
+    <a href="https://github.com/kaushalrog/Satellite-Optical-Fault-Recovery">Code ↗</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="intro">
+    <div>
+      <div class="label">Live simulator · runs entirely in your browser</div>
+      <h1>Break a laser link. <em>Watch it heal.</em></h1>
+      <p>Pick a fault, run it, and watch both supervisors respond on link 1 between satellites 1 and 2. V1 is the original and V2 the revised method. The engine is a JavaScript port of the project's MATLAB/Simulink model.</p>
     </div>
   </div>
-</header>
 
-<main>
-<section class="band" id="try" aria-labelledby="tryh">
-  <div class="wrap">
-    <div class="howtitle">
-      <h2 id="tryh" style="margin:0">Try it</h2>
-      <p>This is a JavaScript copy of our Simulink model, running in your browser. Pick a fault on the link between satellites 1 and 2 and press Run. V1 and V2 get exactly the same fault and the same noise.</p>
-    </div>
-
-    <div class="sim">
-      <form class="sim-bar" id="form">
-        <label>Fault<select id="scenario"></select></label>
-        <label>How it appears<select id="profile"></select></label>
-        <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:.2rem" id="nLabel">Satellites</div><div class="seg" role="group" aria-labelledby="nLabel" id="nSeg"></div></div>
-        <label class="sev">Severity <span id="sevOut" class="num">1.00</span><input type="range" id="severity" min="0.25" max="1.5" step="0.05" value="1"></label>
-        <label>Starts (s)<input type="number" id="fStart" min="1" max="9" step="0.1" value="2"></label>
-        <label>Clears (s)<input type="number" id="fEnd" min="1.5" max="10" step="0.1" value="8"></label>
-        <label>Noise seed<input type="number" id="seed" min="1" max="99999" step="1" value="101"></label>
-        <button class="run" type="submit" id="runBtn">Run</button>
+  <div class="console">
+    <!-- CONTROLS -->
+    <aside class="panel" aria-label="Simulation controls">
+      <div class="ph"><h2>Mission setup</h2><span class="label">01</span></div>
+      <form class="pad" id="form">
+        <div class="field"><span class="label" id="nLabel">Satellites</span>
+          <div class="seg" role="group" aria-labelledby="nLabel" id="nSeg"></div></div>
+        <div class="field"><label class="label" for="scenario">Fault on link 1</label><select id="scenario"></select></div>
+        <div class="field"><label class="label" for="profile">Fault profile</label><select id="profile"></select></div>
+        <div class="field">
+          <div class="rangehead"><label class="label" for="severity">Severity</label><span class="mono" id="sevOut">1.00</span></div>
+          <input type="range" id="severity" min="0.25" max="1.5" step="0.05" value="1">
+        </div>
+        <div class="row2">
+          <div class="field"><label class="label" for="fStart">Onset (s)</label><input type="number" id="fStart" min="1" max="9" step="0.1" value="2"></div>
+          <div class="field"><label class="label" for="fEnd">Clears (s)</label><input type="number" id="fEnd" min="1.5" max="10" step="0.1" value="8"></div>
+        </div>
+        <div class="field"><label class="label" for="seed">Noise seed</label><input type="number" id="seed" min="1" max="99999" step="1" value="101"></div>
+        <button class="btn primary" type="submit" id="runBtn">▶ Run simulation</button>
+        <div class="field"><span class="label">Try a preset</span><div class="presets" id="presets"></div></div>
+        <p class="hint">Each run simulates 10 s for every link in the network, for both supervisors. That takes about 30–200 ms.</p>
       </form>
-      <div class="tries">Good ones to start with: <span id="presets"></span></div>
+    </aside>
 
-      <div class="panes">
-        <div>
-          <div class="ptitle"><b>The network</b><span class="note" id="netLabel">4 satellites, 5 links</span></div>
-          <canvas id="net" aria-label="Satellites on a ring with their laser links. Working links are solid, failed links dashed, and the route carrying traffic from satellite 1 to satellite 2 is drawn thicker."></canvas>
+    <!-- CENTRE -->
+    <section class="views">
+      <div class="panel">
+        <div class="ph"><h2>Network &amp; beam</h2><span class="label" id="netLabel">4 satellites · 5 links</span></div>
+        <div class="stage">
+          <div>
+            <div class="overlay">
+              <span class="clock" id="clock">T+0.00 s</span>
+              <span class="label" id="ovImpl">V2 supervisor</span>
+              <div class="status" id="pills"></div>
+            </div>
+            <canvas id="net" class="cv-net" aria-label="Network view: satellites on a ring with laser links coloured by received power and the active traffic route highlighted"></canvas>
+          </div>
+          <div>
+            <div class="scopehead"><span class="label">Beam on receiver · link 1</span>
+              <div class="scopeimpl" role="group" aria-label="Supervisor shown"><button type="button" class="v1c" data-impl="v1" aria-pressed="false">V1</button><button type="button" class="v2c" data-impl="v2" aria-pressed="true">V2</button></div></div>
+            <canvas id="scope" class="cv-scope" aria-label="Receiver scope: beam spot position relative to the receiver aperture"></canvas>
+            <div class="readout">
+              <div><span class="label">Power</span><b id="rPow">—</b></div>
+              <div><span class="label">Diagnosis</span><b id="rDiag" style="font-size:.85rem">—</b></div>
+              <div><span class="label">Action</span><b id="rAct" style="font-size:.85rem">—</b></div>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="ptitle"><b>Beam at the receiver</b>
-            <span class="which" role="group" aria-label="Show supervisor"><button type="button" data-impl="v1" aria-pressed="false">V1</button><button type="button" data-impl="v2" aria-pressed="true">V2</button></span></div>
-          <canvas id="scope" aria-label="Where the beam lands relative to the receiver on link 1"></canvas>
-          <p class="note" style="margin:.5rem 0 0">The cross is the receiver. Inside the dashed circle a healthy beam still gives enough power. The green line is the correction being applied.</p>
-        </div>
-        <div class="side">
-          <div class="status" id="pills" aria-live="polite"></div>
-          <div><div class="ptitle"><b>Scores for this run</b><span class="note">link 1</span></div><table class="mt" id="metrics"></table></div>
+        <div class="transport" style="border-top:1px solid var(--rule)">
+          <button class="btn" type="button" id="play">❚❚ Pause</button>
+          <button class="btn" type="button" id="restart">↺ Replay</button>
+          <label class="sr" for="scrub" hidden>Time</label>
+          <input type="range" id="scrub" min="0" max="500" value="0" aria-label="Simulation time">
+          <label for="speed" class="label">Speed</label>
+          <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select>
         </div>
       </div>
-      <div class="transport">
-        <button type="button" id="play">Pause</button>
-        <button type="button" id="restart">Replay</button>
-        <input type="range" id="scrub" min="0" max="500" value="0" aria-label="Time">
-        <label class="note">Speed <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select></label>
+
+      <div class="panel">
+        <div class="ph"><h2>Link 1 telemetry</h2><span class="label">Select a chart to jump to that time</span></div>
+        <div class="charts">
+          <div class="chart"><h3>Received power <span class="u">(µW)</span> <span class="legend"><span><i style="background:var(--v1)"></i>V1</span><span><i style="background:var(--v2)"></i>V2</span><span><i style="background:var(--muted)"></i>1.5 µW sensitivity</span></span></h3><canvas id="cPow" class="cv-chart"></canvas></div>
+          <div class="chart"><h3>Pointing error at receiver <span class="u">(µrad)</span></h3><canvas id="cPt" class="cv-chart"></canvas></div>
+          <div class="chart"><h3>Diagnosis vs. truth</h3><canvas id="cCls" class="cv-strip"></canvas><div class="classkey" id="classKey"></div></div>
+        </div>
       </div>
-      <div class="charts">
-        <div><h4>Received power, µW</h4><canvas id="cPow"></canvas>
-          <div class="key"><i style="background:var(--v1)"></i>V1<i style="background:var(--v2)"></i>V2<i style="background:var(--muted);height:1px"></i>1.5 µW needed</div></div>
-        <div><h4>Pointing error at the receiver, µrad</h4><canvas id="cPt"></canvas>
-          <div class="key">Shaded: fault active. Click a chart to jump there.</div></div>
-        <div><h4>What each supervisor thinks is wrong</h4><canvas id="cCls"></canvas>
-          <div class="classkey" id="classKey"></div></div>
+    </section>
+
+    <!-- SIDE -->
+    <aside class="side">
+      <div class="panel">
+        <div class="ph"><h2>This run</h2><span class="label">Link 1 metrics</span></div>
+        <div class="pad" style="padding-top:.4rem"><table class="mt" id="metrics"></table></div>
       </div>
-      <div class="below">
-        <div><div class="ptitle"><b>What happened, step by step</b><span class="note" id="logCount"></span></div><div class="log" id="log"></div></div>
-        <div class="sweep">
-          <div class="ptitle"><b>How close is this to the MATLAB model?</b></div>
-          <p class="note">The browser uses a simpler fixed-step solver and a different random-number generator, so it won't match MATLAB exactly. This reruns the 80 standard trials (8 cases, 5 seeds, both supervisors) and puts them next to the MATLAB averages.</p>
-          <button type="button" id="sweepBtn">Run the 80 trials</button>
+      <div class="panel">
+        <div class="ph"><h2>Supervisor log</h2><span class="label" id="logCount">0 events</span></div>
+        <div class="log" id="log" aria-live="polite"></div>
+      </div>
+      <div class="panel sweep">
+        <div class="ph"><h2>Benchmark sweep</h2><span class="label">8 faults × 5 seeds</span></div>
+        <div class="pad">
+          <p class="hint" style="margin:0">Runs all 80 trials for the current network size in your browser and compares them with the verified MATLAB averages.</p>
+          <button class="btn" type="button" id="sweepBtn">Run 80-trial sweep</button>
           <progress id="sweepProg" max="1" value="0" hidden></progress>
-          <div id="sweepOut" class="tablewrap"></div>
+          <div id="sweepOut" style="overflow-x:auto"></div>
         </div>
       </div>
-    </div>
+    </aside>
   </div>
-</section>
-
-<section class="band" aria-labelledby="foundh">
-  <div class="wrap split wide-left">
-    <div>
-      <h2 id="foundh">What we found</h2>
-      <div class="prose">
-        <p>These are the four-satellite averages from 160 MATLAB/Simulink trials per supervisor. The other network sizes give the same diagnosis scores, because the faulty link sees identical conditions in every network.</p>
-      </div>
-      <div class="tablewrap"><table>
-        <thead><tr><th>Measure</th><th class="r v1">V1</th><th class="r v2">V2</th></tr></thead>
-        <tbody>
-          <tr><td>Correctly says whether a fault is present</td><td class="r">72.1%</td><td class="r better">96.5%</td></tr>
-          <tr><td>Names the exact fault</td><td class="r">9.5%</td><td class="r better">71.5%</td></tr>
-          <tr><td>False alarms while healthy</td><td class="r">33.4%</td><td class="r better">3.0%</td></tr>
-          <tr><td>Time link 1 is down</td><td class="r">3.58 s</td><td class="r better">2.73 s</td></tr>
-          <tr><td>Down after the fault has already cleared</td><td class="r">0.60 s</td><td class="r better">0.15 s</td></tr>
-          <tr><td>Outages recovered before the fault clears</td><td class="r better">10 of 25</td><td class="r">5 of 20</td></tr>
-          <tr><td>Time to first alarm</td><td class="r better">0.02 s</td><td class="r">0.25 s</td></tr>
-        </tbody>
-      </table></div>
-      <div class="prose">
-        <p>V1's low score for naming the fault wasn't a tuning problem. Its code could only ever name one fault type, optical power loss. 66% on that one and 0% on the other six averages to 9.5%.</p>
-        <p><strong>Two rows got worse.</strong> V2 recovers fewer outages because it prevents five sensor-fault outages altogether, and what's left is harder to fix. With 82% power loss, even perfect pointing only gives 0.70 µW against the 1.5 µW needed. V2 names those faults and reroutes traffic instead of pretending to repair them. It also raises its first alarm later, because it waits for evidence, and it now gives a few false alarms around actuator faults that V1 never noticed at all.</p>
-        <p><a href="results.html">Full results, figures and a worked example →</a></p>
-      </div>
-    </div>
-    <figure>
-      <img src="figures/per_scenario_diagnostics.png" alt="Bar charts of detection, exact isolation, false alarms and uncertain time for each fault, V1 blue and V2 orange" loading="lazy">
-      <figcaption>Per fault, four satellites, five trials each. V1 is blue, V2 orange. Top right: V1 names only power loss, while V2 names everything except blockage. A dark receiver looks the same whether it's blocked or the transmitter is off, so V2 says "uncertain".</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="band" aria-labelledby="howh">
-  <div class="wrap">
-    <div class="howtitle"><h2 id="howh" style="margin:0">How V2 tells faults apart</h2><p>Four checks, each using information V1 ignored.</p></div>
-    <div class="cards4">
-      <div class="card tagged" style="--c:#1aa3a3"><h3>Sensor or beam?</h3><p>A separate rate sensor measures how fast the terminal turns. V2 adds that up into its own angle estimate. If the angle sensor suddenly disagrees with it, the sensor is wrong, not the beam.</p></div>
-      <div class="card tagged" style="--c:#8a5cd6"><h3>Weak or slow actuator?</h3><p>V2 compares the torque it asks for with the torque it gets over the last 0.8 s. It fits how much arrives and how fast. A weak actuator and a slow one change different numbers.</p></div>
-      <div class="card tagged" style="--c:#2f7fd1"><h3>Misaligned or dim?</h3><p>When the cause is unclear, V2 nudges the beam a few microradians each way. If power rises in one direction, the beam is off target. If it falls everywhere, the light is weaker.</p></div>
-      <div class="card tagged" style="--c:var(--laser)"><h3>Is the fix still right?</h3><p>V2 keeps predicting the power its explanation implies. If the measurements disagree twice in a row, it drops the correction and checks again. That fixed most outages after a fault cleared.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="band" aria-labelledby="limh">
-  <div class="wrap split">
-    <div>
-      <h2 id="limh">What it can't do</h2>
-      <ul class="prose">
-        <li>Tell a blocked link from a dead transmitter. Both look completely dark.</li>
-        <li>Catch a sensor bias that was there from start-up, without calibration.</li>
-        <li>Work without accurate torque measurements, which real hardware may not have.</li>
-        <li>Handle moving satellites, several faulty links at once, or realistic traffic. The network is fixed and traffic is a steady flow.</li>
-        <li>Say anything about real satellites. This is all simulation.</li>
-      </ul>
-    </div>
-    <div>
-      <h2>Running the MATLAB version</h2>
-      <p>You need MATLAB R2026a with Simulink. From the project folder:</p>
-      <pre>start_v2                  % opens the 4-satellite model
-test_v2                   % runs the nine checks
-folder = run_v2_suite;    % runs all 320 comparison trials
-plot_v2_comparison(folder)</pre>
-      <p class="note">We reran the full 320-trial comparison on 16 October 2026 and matched the saved batch exactly, apart from run times.</p>
-    </div>
-  </div>
-</section>
 </main>
 
-<footer><div class="wrap">
-  <div>Rishitha Chappidi and Kaushal Reddy. <a href="https://github.com/kaushalrog/Satellite-Optical-Fault-Recovery">Code and data on GitHub</a></div>
-  <div>Earlier project: <a href="https://kaushalrog.github.io/Spacecraft-Formation-Attitude-Control/">spacecraft formation attitude control</a></div>
+<footer><div class="in">
+  <div>The browser engine ports the MATLAB model: Gaussian-beam optics, sliding-mode pointing control, the fault injector, both supervisors, Dijkstra rerouting and the original metric definitions. It integrates with fixed-step RK4 and uses its own random generator, so its numbers come close to the MATLAB batch without matching it exactly. The <a href="results.html">MATLAB results page</a> holds the verified figures.</div>
+  <div>Simulation results only. Nothing here demonstrates hardware reliability.</div>
 </div></footer>
 
 <script src="data.js"></script>
