@@ -10,136 +10,156 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <link rel="stylesheet" href="site.css">
 <style>
-.fig { max-width: 1000px; margin: 2rem auto; padding-inline: 20px; }
-.fig img { border: 1px solid var(--line); background: #000; }
+figure img { background: #000; }
+.calc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; margin: 1rem 0 1.2rem; }
+@media (max-width: 760px) { .calc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.calc .card b { display: block; font: 600 1.45rem/1.1 var(--sans); font-variant-numeric: tabular-nums; margin-bottom: .2rem; }
+.calc .card span { font-size: .84rem; color: var(--muted); }
+.calc .card code { font-size: .8rem; color: var(--muted); }
 </style>
 </head>
 <body>
-<div class="top"><div class="wide">
-  <a class="home" href="index.html">Satellite laser link recovery</a>
-  <nav aria-label="Pages">
-    <a href="index.html">Project</a>
-    <a href="results.html" aria-current="page">Full results</a>
-    <a href="https://github.com/kaushalrog/Satellite-Optical-Fault-Recovery">Code on GitHub</a>
-  </nav>
-</div></div>
-
-<main>
-<header class="col intro">
-  <h1>Full results</h1>
-  <div class="byline">From the MATLAB R2026a / Simulink comparison. Saved batch comparison_20261014_224749_328, rerun with identical results on 16 October 2026.</div>
-  <p>Each trial simulates 10 seconds. A fault is switched on for link 1 at 2 s and off at 8 s. Scoring starts at 1 s and uses one sample every 20 ms, so 450 samples per trial. That gives 300 samples with a fault and 150 without. We ran 4, 6, 8 and 10 satellites, seven faults plus a no-fault case, and five noise seeds (101, 202, 303, 404, 505). That's 160 trials for each supervisor. 64 of the V1 trials were reused from earlier saved runs. The other 256 were new Simulink runs.</p>
-  <p>Two definitions matter for reading everything below. <em>Detection</em> means the supervisor raised some alarm while a fault was active. <em>Exact isolation</em> means it named the correct fault. When the supervisor says "uncertain", that counts as detecting a fault but not as naming it. We never dropped uncertain answers from any score.</p>
+<header class="mast small">
+  <div class="wrap">
+    <nav class="top" aria-label="Pages">
+      <a class="home" href="index.html">Satellite laser link recovery</a>
+      <div>
+        <a href="index.html">Project</a>
+        <a href="results.html" aria-current="page">Full results</a>
+        <a href="https://github.com/kaushalrog/Satellite-Optical-Fault-Recovery">Code on GitHub</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <div>
+        <h1>Full results</h1>
+        <div class="byline">MATLAB R2026a / Simulink. Saved batch comparison_20261014_224749_328, rerun with identical results on 16 October 2026.</div>
+      </div>
+      <div class="intro">
+        <p>Each trial simulates 10 s with a fault on link 1 from 2 s to 8 s. We score 450 samples per trial, 300 with the fault and 150 without. We ran 4, 6, 8 and 10 satellites, seven faults plus no fault, and five seeds: 160 trials per supervisor. 256 of them were new Simulink runs. The other 64 were saved V1 runs.</p>
+        <p><em>Detection</em> means some alarm was raised during the fault. <em>Exact isolation</em> means the right fault was named. "Uncertain" counts as detection but not isolation, and it's never dropped from a score.</p>
+      </div>
+    </div>
+  </div>
 </header>
 
-<section class="col">
-  <h2>Overall, four satellites</h2>
-  <p>Mean ± standard deviation across the five seeds. For each seed we first average over the eight scenarios.</p>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Measure</th><th class="r">V1</th><th class="r">V2</th></tr></thead>
-    <tbody>
-      <tr><td>Detection accuracy</td><td class="r">72.06 ± 0.00%</td><td class="r">96.53 ± 0.12%</td></tr>
-      <tr><td>Precision (alarms that were real)</td><td class="r">79.88 ± 0.00%</td><td class="r">98.23 ± 0.09%</td></tr>
-      <tr><td>Recall (fault time that was caught)</td><td class="r">71.19 ± 0.00%</td><td class="r">95.76 ± 0.21%</td></tr>
-      <tr><td>False alarms while healthy</td><td class="r">33.42 ± 0.00%</td><td class="r">2.98 ± 0.15%</td></tr>
-      <tr><td>Exact isolation</td><td class="r">9.48 ± 0.00%</td><td class="r">71.52 ± 0.21%</td></tr>
-      <tr><td>Time spent saying "uncertain"</td><td class="r">44.36 ± 0.00%</td><td class="r">14.17 ± 0.00%</td></tr>
-      <tr><td>Outages recovered before the fault cleared</td><td class="r">40.0% (10 of 25)</td><td class="r">25.0% (5 of 20)</td></tr>
-      <tr><td>Link 1 down</td><td class="r">3.58 s</td><td class="r">2.73 s</td></tr>
-      <tr><td>Link 1 down after the fault cleared</td><td class="r">0.60 s</td><td class="r">0.15 s</td></tr>
-      <tr><td>Restoration confirmed after the fault cleared</td><td class="r">71.4%</td><td class="r">100%</td></tr>
-      <tr><td>Time with no route at all</td><td class="r">0 s</td><td class="r">0 s</td></tr>
-    </tbody>
-  </table></div>
-  <p>A standard deviation of 0.00 doesn't mean the system ignores noise. It means the discrete decisions came out the same for all five seeds at this display precision.</p>
-  <p>The recovery row is the one that goes down. V2 prevents five of V1's sensor-fault outages altogether, so they drop out of its count, and it didn't create any new outages. What's left for V2 includes power loss, blockage and the combined fault, and pointing can't fix any of those. With 82% power loss, perfect alignment still only gives 0.70 µW. With the combined fault, it gives 1.37 µW. The receiver needs 1.5 µW in both cases. We report the drop as it is, together with the counts.</p>
+<main>
+<section class="band">
+  <div class="wrap split">
+    <div>
+      <h2>Overall, four satellites</h2>
+      <p class="note">Mean ± standard deviation across five seeds. Each seed is first averaged over the eight scenarios.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Measure</th><th class="r v1">V1</th><th class="r v2">V2</th></tr></thead>
+        <tbody>
+          <tr><td>Detection accuracy</td><td class="r">72.06 ± 0.00%</td><td class="r better">96.53 ± 0.12%</td></tr>
+          <tr><td>Precision (alarms that were real)</td><td class="r">79.88 ± 0.00%</td><td class="r better">98.23 ± 0.09%</td></tr>
+          <tr><td>Recall (fault time caught)</td><td class="r">71.19 ± 0.00%</td><td class="r better">95.76 ± 0.21%</td></tr>
+          <tr><td>False alarms while healthy</td><td class="r">33.42 ± 0.00%</td><td class="r better">2.98 ± 0.15%</td></tr>
+          <tr><td>Exact isolation</td><td class="r">9.48 ± 0.00%</td><td class="r better">71.52 ± 0.21%</td></tr>
+          <tr><td>Time spent "uncertain"</td><td class="r">44.36 ± 0.00%</td><td class="r better">14.17 ± 0.00%</td></tr>
+          <tr><td>Outages recovered before clearance</td><td class="r better">10 of 25</td><td class="r">5 of 20</td></tr>
+          <tr><td>Link 1 down</td><td class="r">3.58 s</td><td class="r better">2.73 s</td></tr>
+          <tr><td>Down after the fault cleared</td><td class="r">0.60 s</td><td class="r better">0.15 s</td></tr>
+          <tr><td>Restoration confirmed after clearance</td><td class="r">71.4%</td><td class="r better">100%</td></tr>
+          <tr><td>Time with no route at all</td><td class="r">0 s</td><td class="r">0 s</td></tr>
+        </tbody>
+      </table></div>
+      <p class="prose">Recovery is the row that falls. V2 prevents five of V1's sensor-fault outages outright and creates no new ones. That leaves it the harder cases: power loss, blockage and the combined fault, which pointing can't fix. Perfect alignment gives 0.70 µW and 1.37 µW for the two power faults, and the receiver needs 1.5 µW.</p>
+    </div>
+    <figure>
+      <img src="figures/matched_scalability.png" alt="Six panels of diagnostic and outage measures against satellite count for V1 and V2" loading="lazy">
+      <figcaption>The same measures at 4, 6, 8 and 10 satellites. The lines are flat because the faulty link sees identical conditions in every network.</figcaption>
+    </figure>
+  </div>
 </section>
 
-<section class="col">
-  <h2>By fault, V2, four satellites</h2>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Fault</th><th class="r">Detection</th><th class="r">False alarms</th><th class="r">Exact isolation</th><th class="r">Uncertain</th><th class="r">Link down</th></tr></thead>
-    <tbody>
-      <tr><td>None</td><td class="r">100%</td><td class="r">0%</td><td class="r">n/a</td><td class="r">0%</td><td class="r">0 s</td></tr>
-      <tr><td>Beam misaligned</td><td class="r">98.4%</td><td class="r">4.0%</td><td class="r">76.3%</td><td class="r">15.6%</td><td class="r">3.80 s</td></tr>
-      <tr><td>Weak actuator</td><td class="r">88.9%</td><td class="r">4.7%</td><td class="r">85.7%</td><td class="r">0%</td><td class="r">0 s</td></tr>
-      <tr><td>Slow actuator</td><td class="r">89.6%</td><td class="r">4.0%</td><td class="r">86.3%</td><td class="r">0%</td><td class="r">0 s</td></tr>
-      <tr><td>Power loss</td><td class="r">98.4%</td><td class="r">4.0%</td><td class="r">76.3%</td><td class="r">15.6%</td><td class="r">6.00 s</td></tr>
-      <tr><td>Blockage</td><td class="r">99.6%</td><td class="r">0.7%</td><td class="r">0%</td><td class="r">66.7%</td><td class="r">6.00 s</td></tr>
-      <tr><td>Sensor bias</td><td class="r">98.9%</td><td class="r">2.5%</td><td class="r">99.7%</td><td class="r">0%</td><td class="r">0 s</td></tr>
-      <tr><td>Misaligned and power loss</td><td class="r">98.4%</td><td class="r">4.0%</td><td class="r">76.3%</td><td class="r">15.6%</td><td class="r">6.00 s</td></tr>
-    </tbody>
-  </table></div>
-  <p>The optical faults all score 76.3% exact isolation for the same reason. V2 says "uncertain" while it nudges the beam to collect evidence, and that takes about 1.4 s of the 6 s fault. Blockage stays at 0% on purpose. A dark receiver looks the same whether it's blocked or the transmitter is off, so V2 reports "uncertain". Sensor bias does best because the separate rate sensor gives a clear, independent check.</p>
-  <p>The actuator faults are where V2 is worse than V1 on one measure. V1 had 0% false alarms there, mostly because it didn't notice those faults at all. V2 does notice them, and the delay in estimating them produces 4.7% and 4.0% false alarms.</p>
+<section class="band">
+  <div class="wrap split wide-left">
+    <div>
+      <h2>By fault, V2, four satellites</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Fault</th><th class="r">Detection</th><th class="r">False alarms</th><th class="r">Named right</th><th class="r">Uncertain</th><th class="r">Link down</th></tr></thead>
+        <tbody>
+          <tr><td>None</td><td class="r">100%</td><td class="r">0%</td><td class="r">n/a</td><td class="r">0%</td><td class="r">0 s</td></tr>
+          <tr><td>Beam misaligned</td><td class="r">98.4%</td><td class="r">4.0%</td><td class="r">76.3%</td><td class="r">15.6%</td><td class="r">3.80 s</td></tr>
+          <tr><td>Weak actuator</td><td class="r">88.9%</td><td class="r">4.7%</td><td class="r">85.7%</td><td class="r">0%</td><td class="r">0 s</td></tr>
+          <tr><td>Slow actuator</td><td class="r">89.6%</td><td class="r">4.0%</td><td class="r">86.3%</td><td class="r">0%</td><td class="r">0 s</td></tr>
+          <tr><td>Power loss</td><td class="r">98.4%</td><td class="r">4.0%</td><td class="r">76.3%</td><td class="r">15.6%</td><td class="r">6.00 s</td></tr>
+          <tr><td>Blockage</td><td class="r">99.6%</td><td class="r">0.7%</td><td class="r">0%</td><td class="r">66.7%</td><td class="r">6.00 s</td></tr>
+          <tr><td>Sensor bias</td><td class="r">98.9%</td><td class="r">2.5%</td><td class="r">99.7%</td><td class="r">0%</td><td class="r">0 s</td></tr>
+          <tr><td>Misaligned + power loss</td><td class="r">98.4%</td><td class="r">4.0%</td><td class="r">76.3%</td><td class="r">15.6%</td><td class="r">6.00 s</td></tr>
+        </tbody>
+      </table></div>
+      <div class="prose">
+        <p>The three optical faults all land at 76.3% for the same reason. V2 says "uncertain" while it nudges the beam to gather evidence, which takes about 1.4 s of the 6 s fault. Blockage stays at 0% on purpose, because a dark receiver can't tell a blockage from a dead transmitter. Sensor bias scores best because the separate rate sensor gives an independent check.</p>
+        <p>On the actuator faults V2 is worse than V1 on one measure. V1 had no false alarms there, mostly because it never noticed the faults at all. V2 does notice them, and the delay in estimating them causes 4.7% and 4.0% false alarms.</p>
+      </div>
+    </div>
+    <figure>
+      <img src="figures/confusion_matrices.png" alt="Row-normalised confusion matrices for V1 and V2; class 7 is uncertain" loading="lazy">
+      <figcaption>Rows are the real fault, columns the answer (7 is "uncertain"). V1's answers pile into "uncertain", or "healthy" for actuator faults. V2's mostly sit on the diagonal, apart from blockage (row 5).</figcaption>
+    </figure>
+  </div>
 </section>
 
-<figure class="fig">
-  <img src="figures/per_scenario_diagnostics.png" alt="Bar charts of detection accuracy, exact isolation, false-alarm rate and uncertain fraction for each fault, V1 in blue and V2 in orange" loading="lazy">
-  <figcaption>Detection, exact isolation, false alarms and time spent uncertain for each fault. Four satellites, mean and standard deviation of five trials. V1 is blue, V2 orange.</figcaption>
-</figure>
-
-<section class="col">
-  <h2>One trial, worked through</h2>
-  <p>Saved trial n4_pointing_v2_seed101: four satellites, the beam misaligned by (23, 10) µrad between 2 s and 8 s, V2 supervisor.</p>
-  <p>Of the 300 fault samples, 229 were labelled "misaligned", 70 "uncertain" and 1 "healthy". Of the 150 healthy samples, 144 were labelled "healthy" and 6 "misaligned". So:</p>
-  <ul>
-    <li>Detection accuracy = (299 + 144) / 450 = 98.44%</li>
-    <li>Exact isolation = 229 / 300 = 76.33%</li>
-    <li>False alarms = 6 / 150 = 4.00%</li>
-    <li>Uncertain = 70 / 450 = 15.56%</li>
-  </ul>
-  <p>V2 raised its first alarm 0.02 s after the fault started. It then probed the beam for 1.4 s, estimated the offset and corrected it. The link came back 2.58 s after it first dropped. When the fault cleared at 8 s, the correction was now pointing the beam the wrong way. V2 noticed, removed it and confirmed the link again, but the link was still down for 1.24 s after clearance. The direct link was down 3.82 s in total. Whenever it was down, traffic went around it via satellite 3, so the network never lost its route.</p>
+<section class="band">
+  <div class="wrap split">
+    <div>
+      <h2>One trial, worked through</h2>
+      <p class="prose">Saved trial n4_pointing_v2_seed101: four satellites, beam misaligned by (23, 10) µrad from 2 s to 8 s, V2. Of 300 fault samples, 229 were called "misaligned", 70 "uncertain" and 1 "healthy". Of 150 healthy samples, 144 were "healthy" and 6 "misaligned".</p>
+      <div class="calc">
+        <div class="card"><b>98.44%</b><span>detection</span><br><code>(299 + 144) / 450</code></div>
+        <div class="card"><b>76.33%</b><span>named right</span><br><code>229 / 300</code></div>
+        <div class="card"><b>4.00%</b><span>false alarms</span><br><code>6 / 150</code></div>
+        <div class="card"><b>15.56%</b><span>uncertain</span><br><code>70 / 450</code></div>
+      </div>
+      <p class="prose">The first alarm came 0.02 s after the fault started. V2 then probed the beam for 1.4 s, estimated the offset and corrected it, and the link came back 2.58 s after it first dropped. At 8 s the fault cleared and the correction became wrong. V2 noticed, removed it and confirmed the link, but it was still down for 1.24 s after clearance. The direct link was down 3.82 s in all. Whenever it was down, traffic went via satellite 3, so the network never lost its route.</p>
+    </div>
+    <figure>
+      <img src="figures/clearance_and_recovery.png" alt="Time traces for a pointing fault and a sensor fault: received power, diagnosed class and applied correction for V1 and V2" loading="lazy">
+      <figcaption>Seed 101, pointing fault (left) and sensor fault (right). Rows show received power against 1.5 µW, diagnosed class against the real one, and the correction applied. In the sensor case V1 loses the link for about 3 s and leaves its correction on after 8 s. V2 never loses it.</figcaption>
+    </figure>
+  </div>
 </section>
 
-<figure class="fig">
-  <img src="figures/clearance_and_recovery.png" alt="Time traces for a pointing fault and a sensor fault: received power, diagnosed class and applied correction for V1 and V2" loading="lazy">
-  <figcaption>Seed 101, pointing fault (left) and sensor fault (right). Top: received power against the 1.5 µW threshold. Middle: diagnosed class against the real one. Bottom: the correction being applied. On the right, V1 loses the link for about 3 s and leaves its correction on after 8 s. V2 never loses it.</figcaption>
-</figure>
-
-<figure class="fig">
-  <img src="figures/confusion_matrices.png" alt="Row-normalised confusion matrices for V1 and V2; class 7 is uncertain" loading="lazy">
-  <figcaption>Rows are the real fault, columns the supervisor's answer (7 is "uncertain"). V1's answers pile up in the uncertain column, or say "healthy" for actuator faults. V2's mostly fall on the diagonal, apart from blockage (row 5).</figcaption>
-</figure>
-
-<section class="col">
-  <h2>Network size</h2>
-  <p>The faulty link sees exactly the same conditions in every network, so the diagnosis scores don't change with size. What changes is the network-wide average and the routes available.</p>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Satellites</th><th class="r">Links</th><th class="r">All links up, V1</th><th class="r">All links up, V2</th><th class="r">Latency V1</th><th class="r">Latency V2</th></tr></thead>
-    <tbody>
-      <tr><td>4</td><td class="r">5</td><td class="r">92.04%</td><td class="r">93.94%</td><td class="r">3.89 ms</td><td class="r">3.62 ms</td></tr>
-      <tr><td>6</td><td class="r">9</td><td class="r">95.58%</td><td class="r">96.64%</td><td class="r">4.99 ms</td><td class="r">4.46 ms</td></tr>
-      <tr><td>8</td><td class="r">12</td><td class="r">96.68%</td><td class="r">97.48%</td><td class="r">4.99 ms</td><td class="r">4.46 ms</td></tr>
-      <tr><td>10</td><td class="r">15</td><td class="r">97.35%</td><td class="r">97.98%</td><td class="r">4.99 ms</td><td class="r">4.46 ms</td></tr>
-    </tbody>
-  </table></div>
-  <p>The network-wide figure rises with size mostly because one bad link gets averaged with more healthy ones. It doesn't mean link 1 got better.</p>
-</section>
-
-<figure class="fig">
-  <img src="figures/matched_scalability.png" alt="Six panels of diagnostic and outage measures against satellite count, V1 and V2" loading="lazy">
-  <figcaption>Diagnostic and outage measures at 4, 6, 8 and 10 satellites. The flat lines are expected, for the reason above.</figcaption>
-</figure>
-
-<section class="col">
-  <h2>Harder conditions</h2>
-  <p>We also ran 24 paired trials with the fault moved to 2.7–6.7 s and angle noise raised to 0.2 µrad. These used seeds 707 and 808, 4 and 10 satellites, and the pointing, sensor and combined faults. V2 confirmed the link was back after the fault cleared in all 12 of its runs. V1 did so in 4 of 12.</p>
-  <p>Nine automated checks also pass. They cover things like: the supervisor never sees the true fault, a dark link stays "uncertain", fits with too little information are rejected, and old corrections get removed.</p>
-
-  <h2>What these results don't show</h2>
-  <ul>
-    <li>Anything about real hardware. This is a simplified simulation.</li>
-    <li>Identifying the cause of a fully dark link, or a sensor bias present from start-up.</li>
-    <li>Performance without accurate torque measurements, with several faulty links at once, with moving satellites or with realistic traffic.</li>
-    <li>That these methods are new. We haven't done the literature comparison needed to claim that.</li>
-  </ul>
-  <p>The tables come straight from the CSV files in <code>revisions/v2/results/</code>, and every trial's raw data is in the repository.</p>
+<section class="band">
+  <div class="wrap cards3">
+    <div>
+      <h2>Network size</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Satellites</th><th class="r">Links</th><th class="r v1">V1 links up</th><th class="r v2">V2 links up</th></tr></thead>
+        <tbody>
+          <tr><td>4</td><td class="r">5</td><td class="r">92.04%</td><td class="r">93.94%</td></tr>
+          <tr><td>6</td><td class="r">9</td><td class="r">95.58%</td><td class="r">96.64%</td></tr>
+          <tr><td>8</td><td class="r">12</td><td class="r">96.68%</td><td class="r">97.48%</td></tr>
+          <tr><td>10</td><td class="r">15</td><td class="r">97.35%</td><td class="r">97.98%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">This rises mostly because one bad link is averaged with more healthy ones, not because link 1 got better. Route latency: 3.6–5.0 ms.</p>
+    </div>
+    <div>
+      <h2>Harder conditions</h2>
+      <p>We ran 24 paired trials with the fault moved to 2.7–6.7 s and angle noise raised to 0.2 µrad. They covered seeds 707 and 808, 4 and 10 satellites, and the pointing, sensor and combined faults.</p>
+      <p>V2 confirmed the link was back after the fault cleared in <strong>12 of 12</strong> runs. V1 did so in 4 of 12.</p>
+      <p class="note">Nine automated checks also pass. For example, the supervisor never sees the true fault, dark links stay "uncertain", weak fits are rejected, and stale corrections are removed.</p>
+    </div>
+    <div>
+      <h2>What this doesn't show</h2>
+      <ul>
+        <li>Anything about real hardware. This is a simplified simulation.</li>
+        <li>How to identify a fully dark link, or a sensor bias present from start-up.</li>
+        <li>How it behaves without accurate torque data, with several faulty links, with moving satellites or with real traffic.</li>
+        <li>That the methods are new. We haven't done the literature comparison to claim that.</li>
+      </ul>
+      <p class="note">All tables come from the CSVs in <code>revisions/v2/results/</code>. Every trial's raw data is in the repository.</p>
+    </div>
+  </div>
 </section>
 </main>
 
-<footer><div class="wide">
-  <div>Rishitha Chappidi and Kaushal Reddy. <a href="index.html">Back to the project and the simulator</a>.</div>
+<footer><div class="wrap">
+  <div>Rishitha Chappidi and Kaushal Reddy</div>
+  <div><a href="index.html">Back to the project and the simulator</a></div>
 </div></footer>
 </body>
 </html>

@@ -114,7 +114,7 @@ function drawNet(frame, c, tNow) {
   }
   for (let i = 1; i <= c.n; i++) {
     const [x, y] = pos(i);
-    ctx.fillStyle = css('--bg'); ctx.strokeStyle = css('--fg'); ctx.lineWidth = 1.4;
+    ctx.fillStyle = css('--card'); ctx.strokeStyle = css('--fg'); ctx.lineWidth = 1.4;
     ctx.beginPath(); ctx.rect(x - 7, y - 7, 14, 14); ctx.fill(); ctx.stroke();
     ctx.fillStyle = css('--fg'); ctx.font = '12px "IBM Plex Sans", sans-serif'; ctx.textAlign = 'center';
     ctx.fillText(`S${i}${i === 1 ? ' (sends)' : i === 2 ? ' (receives)' : ''}`, x, y + (y < cy ? -14 : 24)); ctx.textAlign = 'left';
@@ -141,7 +141,7 @@ function drawScope(res, k) {
   const f = F[k], e = f.Y[0].pointingError, bx = cx + e[0] * sc, by = cy - e[1] * sc, r = c.divergence * sc;
   const dim = f.Y[0].power <= 0 ? 0 : Math.min(1, f.Y[0].power / res.p0);
   const g = ctx.createRadialGradient(bx, by, 0, bx, by, r);
-  const beam = css('--bad');
+  const beam = css('--laser');
   g.addColorStop(0, hexA(beam, .85 * dim + .05)); g.addColorStop(.5, hexA(beam, .35 * dim + .02)); g.addColorStop(1, hexA(beam, 0));
   ctx.fillStyle = g; ctx.beginPath(); ctx.arc(bx, by, r, 0, 7); ctx.fill();
   // receiver: sensitivity contour for this link's current power scale
@@ -270,10 +270,10 @@ function render(tNow = performance.now() / 1000) {
   const route = f.route.path.length === 0 ? 'there is no route from satellite 1 to satellite 2'
     : f.route.path.length === 2 ? 'traffic goes straight from 1 to 2' : `traffic goes the long way, ${f.route.path.join(' → ')}`;
   const act = d.action ? `, and it is currently ${ACTION_NAMES[d.action].toLowerCase()}` : '';
-  $('pills').innerHTML = `<span class="t">${f.t.toFixed(2)} s</span>, showing ${who}. Link 1 is `
+  $('pills').innerHTML = `<span class="t">${f.t.toFixed(2)} s</span>Showing ${who}. Link 1 is `
     + (y.available ? `up at ${(y.measuredPower * 1e6).toFixed(2)} µW` : `<span style="color:var(--bad)">down at ${(y.measuredPower * 1e6).toFixed(2)} µW</span>`)
     + ` and ${route}. Real fault: ${d.truth ? CLASS_NAMES[d.truth].toLowerCase() : 'none'}. ${who} thinks: ${CLASS_NAMES[d.label].toLowerCase()}${act}.`
-    + ` <span class="note">(Switch to ${other} with the buttons above the beam view.)</span>`;
+    + ``;
   drawNet(f, c, tNow); drawScope(res, S.k); drawCharts(S.k);
   $('log').querySelectorAll('button').forEach(b => b.className = +b.dataset.k <= S.k ? 'past' : 'future');
 }
