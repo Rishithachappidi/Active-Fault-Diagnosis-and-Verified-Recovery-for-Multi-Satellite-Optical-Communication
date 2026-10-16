@@ -1,0 +1,5 @@
+# Simulink build caches and large regenerated data (rerun int_run_all to recreate)
+slprj/
+*.slxc
+results/*.mat
+output_images/
