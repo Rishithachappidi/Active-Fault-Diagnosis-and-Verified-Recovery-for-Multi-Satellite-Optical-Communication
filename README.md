@@ -1,6 +1,8 @@
 # Communication-Aware Fault-Tolerant Attitude Coordination of Four Satellites
 
-One integrated MATLAB/Simulink simulation: spacecraft motion changes optical pointing, optical power gates delayed state packets, received messages determine follower targets, and local diagnosis can optionally adjust messaging/prediction during recovery.
+
+
+One integrated MATLAB/Simulink simulation: spacecraft motion changes optical pointing, optical power gates delayed state packets, received messages determine follower targets and local diagnosis can optionally adjust messaging/prediction during recovery.
 
 The main experiment tracks a moving attitude command. **Only SC1 receives that command.** Followers maintain specified attitude offsets through a declared leader–follower chain (SC1 → SC2 → SC3 → SC4). They retain local stabilization during an outage, but cannot independently track the unknown moving command.
 
@@ -67,6 +69,6 @@ The earlier static-reference condition remains reproducible with `start_static_p
 - The sparse command-distribution chain has no alternate-route forwarding. A single edge failure need not have the same effect in a redundant topology.
 - All moving-task configurations use a 0.06 s terminal servo; the static task uses 0.12 s. This task-specific setting was declared before rankings were inspected. Local controller gains are unchanged.
 - Raw availability is power-threshold eligibility, with a separate one-second recovery scoring hold. Acquisition/lock protocol, fixed geometry, ideal attitude/encoder sensing, and reciprocal pilot measurement remain simplifications.
-- This is an engineering testbed, not flight qualification, a stability proof, or an established novel published algorithm. Three seeded channel trials provide exploratory variability.
+- This is an engineering testbed, not flight qualification, a stability proof, or an established novel published algorithm. Three seeded channel trials provide exploratory variability .
 
 See [tracking equations and metrics](docs/TRACKING_MODEL.md), [base physics](docs/MODEL.md), [validation](docs/VALIDATION.md), and [change history](CHANGELOG.md).
