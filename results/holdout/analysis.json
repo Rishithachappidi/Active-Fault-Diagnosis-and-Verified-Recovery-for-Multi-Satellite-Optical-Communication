@@ -1,0 +1,8 @@
+{
+  "trials": 440,
+  "independent_seeds": 20,
+  "bootstrap_resamples": 10000,
+  "analysis_seed": 20261022,
+  "source_hashes_verified": true,
+  "intervals": "95% pointwise paired-seed percentile bootstrap; exploratory, unadjusted"
+}

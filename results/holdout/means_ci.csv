@@ -1,0 +1,89 @@
+case_name,mode,policy,metric,n,mean,ci_low,ci_high,units
+principal_pointing,ideal_periodic,off,fault_pair_rms_rad,20,0.3288863840460658,0.32194316393318195,0.3362608649846567,degrees
+principal_pointing,ideal_periodic,off,fault_tracking_rms_rad,20,0.412935415818136,0.4062401971939201,0.4199647990721406,degrees
+principal_pointing,ideal_periodic,off,fault_control_effort_N2m2s,20,8.564732598130057e-09,8.091244253768306e-09,9.073525855002784e-09,N^2 m^2 s
+principal_pointing,ideal_periodic,off,attempted_packets,20,2250.0,2250.0,2250.0,directed packets
+principal_pointing,optical_event,frozen,fault_pair_rms_rad,20,0.37276747221001993,0.36535312889521065,0.38035381701032944,degrees
+principal_pointing,optical_event,frozen,fault_tracking_rms_rad,20,0.45564982332873866,0.4469146973276417,0.4643423072049451,degrees
+principal_pointing,optical_event,frozen,fault_control_effort_N2m2s,20,9.461503078637795e-09,8.97276892751768e-09,9.962787382240599e-09,N^2 m^2 s
+principal_pointing,optical_event,frozen,attempted_packets,20,1227.75,1179.3,1274.6512500000001,directed packets
+principal_pointing,optical_event,off,fault_pair_rms_rad,20,0.370523440634751,0.3621372892913094,0.37935051787565993,degrees
+principal_pointing,optical_event,off,fault_tracking_rms_rad,20,0.4534728286685788,0.4426469067640522,0.4640901988226166,degrees
+principal_pointing,optical_event,off,fault_control_effort_N2m2s,20,9.787124387949082e-09,9.303172471821298e-09,1.0267970478665465e-08,N^2 m^2 s
+principal_pointing,optical_event,off,attempted_packets,20,1238.25,1186.6,1289.25,directed packets
+principal_pointing,optical_periodic,off,fault_pair_rms_rad,20,0.35160577579180297,0.344415827456135,0.3593835577655942,degrees
+principal_pointing,optical_periodic,off,fault_tracking_rms_rad,20,0.43373240610996155,0.4252523117976717,0.44262502872174403,degrees
+principal_pointing,optical_periodic,off,fault_control_effort_N2m2s,20,9.104441056192698e-09,8.647865458850493e-09,9.59404006735903e-09,N^2 m^2 s
+principal_pointing,optical_periodic,off,attempted_packets,20,2250.0,2250.0,2250.0,directed packets
+principal_pointing,optical_periodic_no_recovery,off,fault_pair_rms_rad,20,1.022118473220921,0.9400146918656499,1.1070466721529089,degrees
+principal_pointing,optical_periodic_no_recovery,off,fault_tracking_rms_rad,20,1.2168630343955633,1.114796098289256,1.3201050876153289,degrees
+principal_pointing,optical_periodic_no_recovery,off,fault_control_effort_N2m2s,20,6.41575550926853e-09,5.505303391138659e-09,7.307991311618837e-09,N^2 m^2 s
+principal_pointing,optical_periodic_no_recovery,off,attempted_packets,20,2250.0,2250.0,2250.0,directed packets
+principal_combined,ideal_periodic,off,fault_pair_rms_rad,20,0.33831068898611927,0.3319007359430438,0.34506775929668454,degrees
+principal_combined,ideal_periodic,off,fault_tracking_rms_rad,20,0.42337165746576105,0.41682079158531027,0.43001723026366934,degrees
+principal_combined,ideal_periodic,off,fault_control_effort_N2m2s,20,2.1436736172221525e-08,1.9852997755115157e-08,2.3029824643007223e-08,N^2 m^2 s
+principal_combined,ideal_periodic,off,attempted_packets,20,2250.0,2250.0,2250.0,directed packets
+principal_combined,optical_event,frozen,fault_pair_rms_rad,20,0.3852555206723583,0.3782732321607429,0.39242330904889144,degrees
+principal_combined,optical_event,frozen,fault_tracking_rms_rad,20,0.46959538048706156,0.4601769612707998,0.47925713251064384,degrees
+principal_combined,optical_event,frozen,fault_control_effort_N2m2s,20,2.3201570561764824e-08,2.1620870540296595e-08,2.4794568396685526e-08,N^2 m^2 s
+principal_combined,optical_event,frozen,attempted_packets,20,1232.35,1187.39875,1276.4012500000001,directed packets
+principal_combined,optical_event,off,fault_pair_rms_rad,20,0.3818153109868752,0.36945351146706723,0.39375014156254484,degrees
+principal_combined,optical_event,off,fault_tracking_rms_rad,20,0.4661296588048756,0.45004146642778925,0.48194166313376885,degrees
+principal_combined,optical_event,off,fault_control_effort_N2m2s,20,2.576353129097648e-08,2.3945930460887652e-08,2.753509082735592e-08,N^2 m^2 s
+principal_combined,optical_event,off,attempted_packets,20,1252.75,1204.7,1300.65,directed packets
+principal_combined,optical_periodic,off,fault_pair_rms_rad,20,0.3639308784759947,0.3549756914405325,0.3730827688868264,degrees
+principal_combined,optical_periodic,off,fault_tracking_rms_rad,20,0.44784770224431714,0.4359165237130093,0.4602381260339993,degrees
+principal_combined,optical_periodic,off,fault_control_effort_N2m2s,20,2.3627774631016705e-08,2.2127600201407722e-08,2.5111527799646812e-08,N^2 m^2 s
+principal_combined,optical_periodic,off,attempted_packets,20,2250.0,2250.0,2250.0,directed packets
+principal_combined,optical_periodic_no_recovery,off,fault_pair_rms_rad,20,1.0160232401510554,0.9309601314591067,1.1036605762605969,degrees
+principal_combined,optical_periodic_no_recovery,off,fault_tracking_rms_rad,20,1.2049398667994,1.099886287492776,1.3128079651814781,degrees
+principal_combined,optical_periodic_no_recovery,off,fault_control_effort_N2m2s,20,1.482307752210583e-08,1.1856815343398331e-08,1.7666154700809144e-08,N^2 m^2 s
+principal_combined,optical_periodic_no_recovery,off,attempted_packets,20,2250.0,2250.0,2250.0,directed packets
+short_small,optical_event,frozen,fault_pair_rms_rad,20,0.3751511161739311,0.3356996645198398,0.4149907906212241,degrees
+short_small,optical_event,frozen,fault_tracking_rms_rad,20,0.45924064139511134,0.4096764903962413,0.5092524136148898,degrees
+short_small,optical_event,frozen,fault_control_effort_N2m2s,20,3.5386585649274744e-09,2.9504875300384893e-09,4.103756786595085e-09,N^2 m^2 s
+short_small,optical_event,frozen,attempted_packets,20,1220.6,1173.54875,1266.15,directed packets
+short_small,optical_event,off,fault_pair_rms_rad,20,0.3751511161739311,0.3356996645198398,0.4149907906212241,degrees
+short_small,optical_event,off,fault_tracking_rms_rad,20,0.45924064139511134,0.4096764903962413,0.5092524136148898,degrees
+short_small,optical_event,off,fault_control_effort_N2m2s,20,3.5386585649274744e-09,2.9504875300384893e-09,4.103756786595085e-09,N^2 m^2 s
+short_small,optical_event,off,attempted_packets,20,1220.6,1173.54875,1266.15,directed packets
+long_large,optical_event,frozen,fault_pair_rms_rad,20,0.39395971605048496,0.3790448713480694,0.40961623834582467,degrees
+long_large,optical_event,frozen,fault_tracking_rms_rad,20,0.47483110271408946,0.460322637818901,0.49049945947111734,degrees
+long_large,optical_event,frozen,fault_control_effort_N2m2s,20,1.3008189456868674e-08,1.2436791519226902e-08,1.3615661044194016e-08,N^2 m^2 s
+long_large,optical_event,frozen,attempted_packets,20,1225.7,1177.39875,1272.5,directed packets
+long_large,optical_event,off,fault_pair_rms_rad,20,0.39295175667962623,0.3750848380271788,0.41119219168934684,degrees
+long_large,optical_event,off,fault_tracking_rms_rad,20,0.47464961985752674,0.45707552409361096,0.4931461462579689,degrees
+long_large,optical_event,off,fault_control_effort_N2m2s,20,1.3226751522757845e-08,1.2598717560400872e-08,1.389565472764612e-08,N^2 m^2 s
+long_large,optical_event,off,attempted_packets,20,1237.85,1186.9987500000002,1287.3524999999997,directed packets
+combined_new,optical_event,frozen,fault_pair_rms_rad,20,0.39410703914196676,0.38090177281795645,0.4069533080394977,degrees
+combined_new,optical_event,frozen,fault_tracking_rms_rad,20,0.48372146751256845,0.47002353299764843,0.49693569705670537,degrees
+combined_new,optical_event,frozen,fault_control_effort_N2m2s,20,2.81006434493348e-08,2.514374997492705e-08,3.090166591290415e-08,N^2 m^2 s
+combined_new,optical_event,frozen,attempted_packets,20,1236.95,1190.19875,1282.20125,directed packets
+combined_new,optical_event,off,fault_pair_rms_rad,20,0.3880459099355477,0.37895656337734024,0.39740225174030674,degrees
+combined_new,optical_event,off,fault_tracking_rms_rad,20,0.4786120051823013,0.470020610238061,0.48722706631098855,degrees
+combined_new,optical_event,off,fault_control_effort_N2m2s,20,3.1500574060754545e-08,2.8327234018594356e-08,3.4564857713585503e-08,N^2 m^2 s
+combined_new,optical_event,off,attempted_packets,20,1253.25,1208.35,1297.55,directed packets
+severe_attenuation_new,optical_event,frozen,fault_pair_rms_rad,20,0.9803223562838531,0.8807828262297616,1.0784235184318414,degrees
+severe_attenuation_new,optical_event,frozen,fault_tracking_rms_rad,20,1.1616881439126834,1.0393138661773436,1.2831590514674585,degrees
+severe_attenuation_new,optical_event,frozen,fault_control_effort_N2m2s,20,7.23647118745467e-09,6.096082367419363e-09,8.346608800548889e-09,N^2 m^2 s
+severe_attenuation_new,optical_event,frozen,attempted_packets,20,1303.25,1251.64875,1352.9012500000001,directed packets
+severe_attenuation_new,optical_event,off,fault_pair_rms_rad,20,0.9855404468725667,0.8851936379299736,1.0834663754978904,degrees
+severe_attenuation_new,optical_event,off,fault_tracking_rms_rad,20,1.1700789773709468,1.0473452186218828,1.2908628977924168,degrees
+severe_attenuation_new,optical_event,off,fault_control_effort_N2m2s,20,6.336049117851269e-09,5.425438439882856e-09,7.2585440812910995e-09,N^2 m^2 s
+severe_attenuation_new,optical_event,off,attempted_packets,20,1355.2,1303.8475,1405.55125,directed packets
+beam_mismatch_new,optical_event,frozen,fault_pair_rms_rad,20,0.6386840007910508,0.5303399660813095,0.7564997095179229,degrees
+beam_mismatch_new,optical_event,frozen,fault_tracking_rms_rad,20,0.7551034385239841,0.635166046488641,0.886814147298963,degrees
+beam_mismatch_new,optical_event,frozen,fault_control_effort_N2m2s,20,1.897210274836543e-08,1.637643971244025e-08,2.1643590606095948e-08,N^2 m^2 s
+beam_mismatch_new,optical_event,frozen,attempted_packets,20,1466.6,1380.0962499999998,1550.55,directed packets
+beam_mismatch_new,optical_event,off,fault_pair_rms_rad,20,0.6645493917235569,0.5562340309131997,0.7808265285863105,degrees
+beam_mismatch_new,optical_event,off,fault_tracking_rms_rad,20,0.7902496230850259,0.670035241221992,0.9207806465486058,degrees
+beam_mismatch_new,optical_event,off,fault_control_effort_N2m2s,20,1.747412637609441e-08,1.5112514770306372e-08,1.9940551629540475e-08,N^2 m^2 s
+beam_mismatch_new,optical_event,off,attempted_packets,20,1442.6,1362.6475000000003,1520.8537499999998,directed packets
+alternate_tree_network,optical_event,frozen,fault_pair_rms_rad,20,0.23548703551113975,0.228644321373296,0.2425591002994778,degrees
+alternate_tree_network,optical_event,frozen,fault_tracking_rms_rad,20,0.3294659453148785,0.32046919166780036,0.3387316643278068,degrees
+alternate_tree_network,optical_event,frozen,fault_control_effort_N2m2s,20,1.002043580057384e-08,9.517743322344285e-09,1.0533153643084343e-08,N^2 m^2 s
+alternate_tree_network,optical_event,frozen,attempted_packets,20,1171.85,1129.545,1214.9,directed packets
+alternate_tree_network,optical_event,off,fault_pair_rms_rad,20,0.23847909970072795,0.22835627565571276,0.2487487751086513,degrees
+alternate_tree_network,optical_event,off,fault_tracking_rms_rad,20,0.3296002787850419,0.3180675551627136,0.3413433406908662,degrees
+alternate_tree_network,optical_event,off,fault_control_effort_N2m2s,20,1.0331510003144691e-08,9.796464334384587e-09,1.0886764284036525e-08,N^2 m^2 s
+alternate_tree_network,optical_event,off,attempted_packets,20,1184.15,1140.05,1229.4,directed packets

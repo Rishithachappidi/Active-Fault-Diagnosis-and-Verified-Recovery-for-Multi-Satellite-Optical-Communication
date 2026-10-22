@@ -1,0 +1,9 @@
+MATLAB 26.1.0.3251617 (R2026a) Update 2
+simulink_max_abs_difference: 0
+coarse_rms_rad: 0.00019641215388
+fine_rms_rad: 0.000196988316351
+rms_abs_difference_rad: 5.76162470533e-07
+coarse_affected_availability: 0.968571428571
+fine_affected_availability: 0.966452533904
+post_clearance_max_correction_rad: 3.06691673498e-06
+post_clearance_availability: 1

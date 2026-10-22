@@ -1,0 +1,1 @@
+BOOTSTRAP_ANALYSIS_PASS: constant paired differences retain zero-width intervals; per-seed attempt change is -10%; 112 expected contrast rows.

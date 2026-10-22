@@ -1,0 +1,5 @@
+Core checks: 11
+Tracking checks: 7
+Held-out policy checks: 5
+Parity interval: 32 s
+Maximum aligned live telemetry difference: 0

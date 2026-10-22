@@ -1,0 +1,113 @@
+case_name,comparison,metric,scale,n,mean,ci_low,ci_high,units
+principal_pointing,frozen_minus_event_off,fault_pair_rms_rad,absolute,20,0.002244031575268911,-0.000375801269813397,0.005336272974665701,degrees
+principal_pointing,frozen_minus_event_off,fault_pair_rms_rad,percent,20,0.659072412034194,-0.07766001799928873,1.5363075169697364,percent
+principal_pointing,frozen_minus_event_off,fault_tracking_rms_rad,absolute,20,0.0021769946601598498,-0.0010246070337871,0.005835767774011359,degrees
+principal_pointing,frozen_minus_event_off,fault_tracking_rms_rad,percent,20,0.5494205621177423,-0.1982595296753088,1.4176060466959084,percent
+principal_pointing,frozen_minus_event_off,fault_control_effort_N2m2s,absolute,20,-3.2562130931128746e-10,-5.098613338087375e-10,-1.5884397387497775e-10,N^2 m^2 s
+principal_pointing,frozen_minus_event_off,fault_control_effort_N2m2s,percent,20,-3.3048488262817632,-5.216924135345077,-1.589697800118049,percent
+principal_pointing,frozen_minus_event_off,attempted_packets,absolute,20,-10.5,-16.4,-5.25,directed packets
+principal_pointing,frozen_minus_event_off,attempted_packets,percent,20,-0.7932420152302744,-1.214896138776979,-0.4109683855136796,percent
+principal_pointing,no_recovery_minus_ideal,fault_pair_rms_rad,absolute,20,0.6932320891748551,0.6092154034255242,0.7788003207203021,degrees
+principal_pointing,no_recovery_minus_ideal,fault_pair_rms_rad,percent,20,211.98852589410444,184.79119014284572,239.0156230479096,percent
+principal_pointing,no_recovery_minus_ideal,fault_tracking_rms_rad,absolute,20,0.8039276185774272,0.7033916665837331,0.9042273582877584,degrees
+principal_pointing,no_recovery_minus_ideal,fault_tracking_rms_rad,percent,20,194.1243892304644,170.8848264286207,216.9234902627521,percent
+principal_pointing,no_recovery_minus_ideal,fault_control_effort_N2m2s,absolute,20,-2.148977088861528e-09,-3.201585175048918e-09,-1.0691619072331295e-09,N^2 m^2 s
+principal_pointing,no_recovery_minus_ideal,fault_control_effort_N2m2s,percent,20,-23.65758424577401,-35.73097446907653,-11.17450688555089,percent
+principal_pointing,no_recovery_minus_ideal,attempted_packets,absolute,20,0.0,0.0,0.0,directed packets
+principal_pointing,no_recovery_minus_ideal,attempted_packets,percent,20,0.0,0.0,0.0,percent
+principal_pointing,recovery_minus_no_recovery,fault_pair_rms_rad,absolute,20,-0.6705126974291179,-0.7547614870099367,-0.587686639533982,degrees
+principal_pointing,recovery_minus_no_recovery,fault_pair_rms_rad,percent,20,-64.33184953785901,-67.30630059484588,-61.22121100602536,percent
+principal_pointing,recovery_minus_no_recovery,fault_tracking_rms_rad,absolute,20,-0.7831306282856016,-0.8813885645549258,-0.6845437971033362,degrees
+principal_pointing,recovery_minus_no_recovery,fault_tracking_rms_rad,percent,20,-63.10553398503528,-65.9383221328857,-60.117670155646294,percent
+principal_pointing,recovery_minus_no_recovery,fault_control_effort_N2m2s,absolute,20,2.6886855469241686e-09,1.699045269825419e-09,3.6760032603502508e-09,N^2 m^2 s
+principal_pointing,recovery_minus_no_recovery,fault_control_effort_N2m2s,percent,20,58.62834464839951,34.65961368896887,84.47249635118388,percent
+principal_pointing,recovery_minus_no_recovery,attempted_packets,absolute,20,0.0,0.0,0.0,directed packets
+principal_pointing,recovery_minus_no_recovery,attempted_packets,percent,20,0.0,0.0,0.0,percent
+principal_pointing,event_minus_recovered_periodic,fault_pair_rms_rad,absolute,20,0.018917664842948052,0.016085650772770025,0.021444891844452897,degrees
+principal_pointing,event_minus_recovered_periodic,fault_pair_rms_rad,percent,20,5.368049434574988,4.562393272171367,6.072824369205016,percent
+principal_pointing,event_minus_recovered_periodic,fault_tracking_rms_rad,absolute,20,0.019740422558617243,0.016494133990847207,0.022703906983572605,degrees
+principal_pointing,event_minus_recovered_periodic,fault_tracking_rms_rad,percent,20,4.5175970358283895,3.7808055778116985,5.163236990856342,percent
+principal_pointing,event_minus_recovered_periodic,fault_control_effort_N2m2s,absolute,20,6.82683331756384e-10,4.6004750623231303e-10,9.370306548049166e-10,N^2 m^2 s
+principal_pointing,event_minus_recovered_periodic,fault_control_effort_N2m2s,percent,20,7.712927001609295,5.087947931007616,10.748878299873764,percent
+principal_pointing,event_minus_recovered_periodic,attempted_packets,absolute,20,-1011.75,-1063.4,-960.75,directed packets
+principal_pointing,event_minus_recovered_periodic,attempted_packets,percent,20,-44.96666666666667,-47.26222222222222,-42.7,percent
+principal_combined,frozen_minus_event_off,fault_pair_rms_rad,absolute,20,0.0034402096854831126,-0.0023810965236412914,0.009617391248056831,degrees
+principal_combined,frozen_minus_event_off,fault_pair_rms_rad,percent,20,1.1545298768538554,-0.4704832052672339,2.9234382276513924,percent
+principal_combined,frozen_minus_event_off,fault_tracking_rms_rad,absolute,20,0.003465721682185918,-0.003576150199298518,0.011001985835537607,degrees
+principal_combined,frozen_minus_event_off,fault_tracking_rms_rad,percent,20,1.0195387486617247,-0.5929306747359301,2.790223385501462,percent
+principal_combined,frozen_minus_event_off,fault_control_effort_N2m2s,absolute,20,-2.561960729211655e-09,-3.7020824237548004e-09,-1.4646295057671278e-09,N^2 m^2 s
+principal_combined,frozen_minus_event_off,fault_control_effort_N2m2s,percent,20,-9.389661791529848,-13.371650589670132,-5.503392752363797,percent
+principal_combined,frozen_minus_event_off,attempted_packets,absolute,20,-20.4,-28.45,-12.5,directed packets
+principal_combined,frozen_minus_event_off,attempted_packets,percent,20,-1.5800013219550113,-2.180950851175147,-0.9885464112640683,percent
+principal_combined,no_recovery_minus_ideal,fault_pair_rms_rad,absolute,20,0.6777125511649361,0.5917641351701709,0.7659018139892498,degrees
+principal_combined,no_recovery_minus_ideal,fault_pair_rms_rad,percent,20,201.23029994354923,174.6508772488566,228.0843008735977,percent
+principal_combined,no_recovery_minus_ideal,fault_tracking_rms_rad,absolute,20,0.781568209333639,0.6791968464376652,0.8857203187998983,degrees
+principal_combined,no_recovery_minus_ideal,fault_tracking_rms_rad,percent,20,183.7683063657977,161.03493398432215,206.53813987161757,percent
+principal_combined,no_recovery_minus_ideal,fault_control_effort_N2m2s,absolute,20,-6.613658650115694e-09,-9.556071305474562e-09,-3.903395733997154e-09,N^2 m^2 s
+principal_combined,no_recovery_minus_ideal,fault_control_effort_N2m2s,percent,20,-30.725923911737556,-43.789392367687014,-17.99923347053184,percent
+principal_combined,no_recovery_minus_ideal,attempted_packets,absolute,20,0.0,0.0,0.0,directed packets
+principal_combined,no_recovery_minus_ideal,attempted_packets,percent,20,0.0,0.0,0.0,percent
+principal_combined,recovery_minus_no_recovery,fault_pair_rms_rad,absolute,20,-0.6520923616750607,-0.7361528795273043,-0.5694785599861812,degrees
+principal_combined,recovery_minus_no_recovery,fault_pair_rms_rad,percent,20,-62.92068580684098,-65.84893454416546,-59.898615415415655,percent
+principal_combined,recovery_minus_no_recovery,fault_tracking_rms_rad,absolute,20,-0.757092164555083,-0.8562720490120468,-0.6590270633307147,degrees
+principal_combined,recovery_minus_no_recovery,fault_tracking_rms_rad,percent,20,-61.57019079465774,-64.33947396093788,-58.665151278901284,percent
+principal_combined,recovery_minus_no_recovery,fault_control_effort_N2m2s,absolute,20,8.804697108910874e-09,6.1403914025599145e-09,1.168157741051263e-08,N^2 m^2 s
+principal_combined,recovery_minus_no_recovery,fault_control_effort_N2m2s,percent,20,104.4751694001814,58.132563225540956,155.6510877195039,percent
+principal_combined,recovery_minus_no_recovery,attempted_packets,absolute,20,0.0,0.0,0.0,directed packets
+principal_combined,recovery_minus_no_recovery,attempted_packets,percent,20,0.0,0.0,0.0,percent
+principal_combined,event_minus_recovered_periodic,fault_pair_rms_rad,absolute,20,0.017884432510880517,0.013092633474410803,0.0219001802301701,degrees
+principal_combined,event_minus_recovered_periodic,fault_pair_rms_rad,percent,20,4.842241482268349,3.537900178846112,5.921875519478248,percent
+principal_combined,event_minus_recovered_periodic,fault_tracking_rms_rad,absolute,20,0.018281956560558504,0.012552035719740322,0.022897571539493743,degrees
+principal_combined,event_minus_recovered_periodic,fault_tracking_rms_rad,percent,20,3.996428894200072,2.721457467439434,4.994817878350105,percent
+principal_combined,event_minus_recovered_periodic,fault_control_effort_N2m2s,absolute,20,2.1357566599597755e-09,1.3708759051332197e-09,2.9511008786547997e-09,N^2 m^2 s
+principal_combined,event_minus_recovered_periodic,fault_control_effort_N2m2s,percent,20,9.015185202219852,5.865851559410538,12.4035704137578,percent
+principal_combined,event_minus_recovered_periodic,attempted_packets,absolute,20,-997.25,-1045.3,-949.35,directed packets
+principal_combined,event_minus_recovered_periodic,attempted_packets,percent,20,-44.32222222222222,-46.45777777777778,-42.193333333333335,percent
+short_small,frozen_minus_event_off,fault_pair_rms_rad,absolute,20,0.0,0.0,0.0,degrees
+short_small,frozen_minus_event_off,fault_pair_rms_rad,percent,20,0.0,0.0,0.0,percent
+short_small,frozen_minus_event_off,fault_tracking_rms_rad,absolute,20,0.0,0.0,0.0,degrees
+short_small,frozen_minus_event_off,fault_tracking_rms_rad,percent,20,0.0,0.0,0.0,percent
+short_small,frozen_minus_event_off,fault_control_effort_N2m2s,absolute,20,0.0,0.0,0.0,N^2 m^2 s
+short_small,frozen_minus_event_off,fault_control_effort_N2m2s,percent,20,0.0,0.0,0.0,percent
+short_small,frozen_minus_event_off,attempted_packets,absolute,20,0.0,0.0,0.0,directed packets
+short_small,frozen_minus_event_off,attempted_packets,percent,20,0.0,0.0,0.0,percent
+long_large,frozen_minus_event_off,fault_pair_rms_rad,absolute,20,0.00100795937085874,-0.002480530420035984,0.004499525655764656,degrees
+long_large,frozen_minus_event_off,fault_pair_rms_rad,percent,20,0.4351023633403156,-0.47205970231372946,1.365152551149197,percent
+long_large,frozen_minus_event_off,fault_tracking_rms_rad,absolute,20,0.00018148285656273693,-0.004224984346010473,0.004590286544018989,degrees
+long_large,frozen_minus_event_off,fault_tracking_rms_rad,percent,20,0.16866308573509237,-0.7607811944071762,1.119443785157861,percent
+long_large,frozen_minus_event_off,fault_control_effort_N2m2s,absolute,20,-2.1856206588916965e-10,-3.5118848699132584e-10,-8.906044883208233e-11,N^2 m^2 s
+long_large,frozen_minus_event_off,fault_control_effort_N2m2s,percent,20,-1.5448829207970578,-2.502896357982547,-0.595777313171618,percent
+long_large,frozen_minus_event_off,attempted_packets,absolute,20,-12.15,-16.45,-7.848750000000018,directed packets
+long_large,frozen_minus_event_off,attempted_packets,percent,20,-0.9426212225694913,-1.2565404716942477,-0.6189463785141338,percent
+combined_new,frozen_minus_event_off,fault_pair_rms_rad,absolute,20,0.00606112920641905,-0.00020951043372417782,0.01221714671732534,degrees
+combined_new,frozen_minus_event_off,fault_pair_rms_rad,percent,20,1.4859295590870547,-0.14579308068213442,3.0881459004428566,percent
+combined_new,frozen_minus_event_off,fault_tracking_rms_rad,absolute,20,0.005109462330267173,-0.002905164914178469,0.012886251860289796,degrees
+combined_new,frozen_minus_event_off,fault_tracking_rms_rad,percent,20,1.0182300850928179,-0.677605266695805,2.649510328262277,percent
+combined_new,frozen_minus_event_off,fault_control_effort_N2m2s,absolute,20,-3.3999306114197446e-09,-4.947364972041589e-09,-1.8597358733012204e-09,N^2 m^2 s
+combined_new,frozen_minus_event_off,fault_control_effort_N2m2s,percent,20,-10.481166471320925,-15.190147881467194,-5.848133641273464,percent
+combined_new,frozen_minus_event_off,attempted_packets,absolute,20,-16.3,-22.9,-9.65,directed packets
+combined_new,frozen_minus_event_off,attempted_packets,percent,20,-1.3271594284132497,-1.8750476727976118,-0.7858459772264907,percent
+severe_attenuation_new,frozen_minus_event_off,fault_pair_rms_rad,absolute,20,-0.0052180905887134945,-0.008728971279110088,-0.0020865869461829476,degrees
+severe_attenuation_new,frozen_minus_event_off,fault_pair_rms_rad,percent,20,-0.5346300492101913,-0.8736574562923156,-0.2236982722700676,percent
+severe_attenuation_new,frozen_minus_event_off,fault_tracking_rms_rad,absolute,20,-0.008390833458263464,-0.013862995068322947,-0.0034591135079224474,degrees
+severe_attenuation_new,frozen_minus_event_off,fault_tracking_rms_rad,percent,20,-0.7510635716096559,-1.2071507405878192,-0.3316319200657674,percent
+severe_attenuation_new,frozen_minus_event_off,fault_control_effort_N2m2s,absolute,20,9.004220696034005e-10,5.743645864916364e-10,1.249211929552877e-09,N^2 m^2 s
+severe_attenuation_new,frozen_minus_event_off,fault_control_effort_N2m2s,percent,20,13.18420068626923,8.515183717556422,18.30991736198071,percent
+severe_attenuation_new,frozen_minus_event_off,attempted_packets,absolute,20,-51.95,-57.2,-46.898750000000014,directed packets
+severe_attenuation_new,frozen_minus_event_off,attempted_packets,percent,20,-3.855403255498497,-4.2631159258774645,-3.462909254241391,percent
+beam_mismatch_new,frozen_minus_event_off,fault_pair_rms_rad,absolute,20,-0.025865390932506,-0.035598243340841176,-0.01770915931473493,degrees
+beam_mismatch_new,frozen_minus_event_off,fault_pair_rms_rad,percent,20,-4.355330229528141,-6.140913524193478,-2.8363703877400623,percent
+beam_mismatch_new,frozen_minus_event_off,fault_tracking_rms_rad,absolute,20,-0.03514618456104176,-0.04577645816111859,-0.025573997533721686,degrees
+beam_mismatch_new,frozen_minus_event_off,fault_tracking_rms_rad,percent,20,-4.859432781512632,-6.47279563305551,-3.422169529573805,percent
+beam_mismatch_new,frozen_minus_event_off,fault_control_effort_N2m2s,absolute,20,1.4979763722710215e-09,9.050780160681603e-10,2.080423682579139e-09,N^2 m^2 s
+beam_mismatch_new,frozen_minus_event_off,fault_control_effort_N2m2s,percent,20,8.778671400978693,4.98067215191126,12.670369451445618,percent
+beam_mismatch_new,frozen_minus_event_off,attempted_packets,absolute,20,24.0,8.19875,40.001249999999985,directed packets
+beam_mismatch_new,frozen_minus_event_off,attempted_packets,percent,20,1.5790841208377908,0.4256324127220992,2.8017913681919953,percent
+alternate_tree_network,frozen_minus_event_off,fault_pair_rms_rad,absolute,20,-0.002992064189588202,-0.007066338128131715,0.0009624840592038368,degrees
+alternate_tree_network,frozen_minus_event_off,fault_pair_rms_rad,percent,20,-0.930384223101034,-2.605787203083597,0.7521458550949109,percent
+alternate_tree_network,frozen_minus_event_off,fault_tracking_rms_rad,absolute,20,-0.0001343334701633984,-0.003593679886754699,0.003247028857813395,degrees
+alternate_tree_network,frozen_minus_event_off,fault_tracking_rms_rad,percent,20,0.11421895386444059,-0.9183691053008649,1.1494955038913055,percent
+alternate_tree_network,frozen_minus_event_off,fault_control_effort_N2m2s,absolute,20,-3.1107420257085065e-10,-5.633096314377407e-10,-7.712356053610703e-11,N^2 m^2 s
+alternate_tree_network,frozen_minus_event_off,fault_control_effort_N2m2s,percent,20,-2.804251225892623,-5.239842797384141,-0.5176210746895675,percent
+alternate_tree_network,frozen_minus_event_off,attempted_packets,absolute,20,-12.3,-16.8,-8.05,directed packets
+alternate_tree_network,frozen_minus_event_off,attempted_packets,percent,20,-1.010725963677837,-1.3550414213577828,-0.6745203542708976,percent

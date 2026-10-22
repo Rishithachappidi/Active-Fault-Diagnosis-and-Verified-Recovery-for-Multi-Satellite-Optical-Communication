@@ -1,0 +1,5 @@
+Core checks: 11
+Tracking checks: 7
+Live parity interval: 32 s
+Maximum aligned telemetry difference: 0
+MATLAB: 26.1.0.3251617 (R2026a) Update 2
